@@ -267,10 +267,10 @@ public class Exercises {
 	 * dateFashion(5, 10) → 2 dateFashion(5, 2) → 0 dateFashion(5, 5) → 1
 	 */
 	public int dateFashion(int you, int date) {
-		if ((you >= 8) || (date >= 8)) {
-			return 2;
-		} else if ((you <= 2) || (date <= 2)) {
+	 if ((you <= 2) || (date <= 2)) {
 			return 0;
+		} else if (you >= 8 || date >= 8) {
+			return 2;
 		} else {
 			return 1;
 		}
@@ -444,8 +444,8 @@ public class Exercises {
 	 * false
 	 */
 	public boolean less20(int n) {
-		return false;
-	}
+	        return ( n + 1 ) % 20 == 0 || ( n + 2 ) % 20 == 0;
+	    }
 
 	/*
 	 * 27. Given a non-negative number "num", return true if num is within 2 of a
