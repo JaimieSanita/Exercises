@@ -185,17 +185,12 @@ public class Exercises {
 	 * intMax(1, 3, 2) → 3 intMax(3, 2, 1) → 3
 	 */
 	public int intMax(int a, int b, int c) {
-		boolean aIsGreatest = (a >= b && a >= c);
-		boolean bIsGreatest = (b >= a && b >= c);
-		boolean cIsGreatest = (c >= a && c >= b);
-		if (aIsGreatest && !bIsGreatest && !cIsGreatest) {
+		if (a >= b && a >= c) {
 			return a;
-		} else if ( bIsGreatest && !aIsGreatest && !cIsGreatest) {
+		} else if (b >= a && b >= c) {
 			return b;
-		} else if (cIsGreatest && !aIsGreatest && !bIsGreatest) {
-			return c;
 		} else {
-			return 0;
+			return c;
 		}
 	}
 
@@ -501,20 +496,24 @@ public class Exercises {
 	/*
 	 * 29. Your cell phone rings. Return true if you should answer it. Normally you
 	 * answer, except in the morning you only answer if it is your mom calling. In
-	 * all cases, if you are asleep, you do not answer. 
-	 * answerCell(false, false,
-	 * false) → true 
-	 * answerCell(false, false, true) → false 
-	 * answerCell(true,
+	 * all cases, if you are asleep, you do not answer. answerCell(false, false,
+	 * false) → true answerCell(false, false, true) → false answerCell(true,
 	 * false, false) → false
 	 */
 	public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
-		return false;
+		boolean answerCellMorning = (isMorning && isMom);
+		if (isAsleep) {
+			return false;
+		} else if (answerCellMorning || !isMorning) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-		// morning only answer mom
-		// in all cases, if asleep no answer
-		// answer except if morning & mom or asleep
-		
+	// morning only answer mom
+	// in all cases, if asleep no answer
+	// answer except if morning & mom or asleep
+
 	/*
 	 * 30. We are having a party with amounts of tea and candy. Return the int
 	 * outcome of the party encoded as 0=bad, 1=good, or 2=great. A party is good
@@ -524,9 +523,17 @@ public class Exercises {
 	 * (0). teaParty(6, 8) → 1 teaParty(3, 8) → 0 teaParty(20, 6) → 2
 	 */
 	public int teaParty(int tea, int candy) {
+		boolean goodParty= (tea >= 5 && candy >=5);
+		boolean greatParty= ((tea >= candy*2) || (candy >= tea*2));
+		boolean badParty= (tea<5 || candy<5);
+		if (greatParty) {
+			return 2;
+		} else if (goodParty) {
+			return 1;
+		} else {
 		return 0;
 	}
-
+	}
 	/*
 	 * 31. Given three ints, a b c, return true if it is possible to add two of the
 	 * ints to get the third. twoAsOne(1, 2, 3) → true twoAsOne(3, 1, 2) → true
