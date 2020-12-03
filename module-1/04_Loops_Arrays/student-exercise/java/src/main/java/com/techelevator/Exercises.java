@@ -133,13 +133,23 @@ public class Exercises {
 
 	/*
 	 * 11. Return the number of even ints in the given array. Note: the % "mod"
-	 * operator computes the remainder, e.g. 5 % 2 is 1. countEvens([2, 1, 2, 3, 4])
-	 * → 3 countEvens([2, 2, 0]) → 3 countEvens([1, 3, 5]) → 0
+	 * operator computes the remainder, e.g. 5 % 2 is 1. 
+	 * countEvens([2, 1, 2, 3, 4])
+	 * → 3 countEvens([2, 2, 0]) → 3 
+	 * countEvens([1, 3, 5]) → 0
 	 */
 	public int countEvens(int[] nums) {
-		return 0;
+		//method type = int
+		//method name =countEvens
+		//parameter is integer array called nums
+		//must return an integer
+		int evenIntegers=0;
+		for (int i=0; i<nums.length; i++) {
+			if (nums[i]%2==0) {
+			evenIntegers++; }
+	} return evenIntegers;
 	}
-
+	//why is there no "return" for if statement block?
 	/*
 	 * 12. Return the sum of the numbers in the array, returning 0 for an empty
 	 * array. Except the number 13 is very unlucky, so it does not count and numbers
@@ -148,7 +158,6 @@ public class Exercises {
 	 * → 6 sum13([1, 2, 2, 1, 13, 3, 4]) → 10
 	 */
 	public int sum13(int[] nums) {
-		int 
 		return 0;
 	}
 
