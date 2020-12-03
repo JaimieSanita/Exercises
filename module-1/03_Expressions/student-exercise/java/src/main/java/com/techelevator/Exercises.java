@@ -400,16 +400,29 @@ public class Exercises {
 	 * → true specialEleven(24) → false
 	 */
 	public boolean specialEleven(int n) {
-		return false;
+		boolean specialEleven = (n % 11 == 0);
+		boolean specialElevenOne = (n % 11 == 1);
+		if (specialEleven || specialElevenOne) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
 	/*
 	 * 24. Return true if the given non-negative number is 1 or 2 more than a
 	 * multiple of 20. (Hint: Think "mod".) more20(20) → false more20(21) → true
 	 * more20(22) → true
 	 */
 	public boolean more20(int n) {
-		
-		return false;
+		boolean multipleOne = (n % 20 == 1);
+		boolean multipleTwo = (n % 20 == 2);
+		if (multipleOne || multipleTwo) {
+			return true;
+		} else {
+
+			return false;
+		}
 	}
 
 	/*
@@ -418,9 +431,14 @@ public class Exercises {
 	 * → false
 	 */
 	public boolean old35(int n) {
+		boolean multipleOfThree= (n%3==0);
+		boolean multipleOfFive= (n%5==0);
+		if (multipleOfThree ^ multipleOfFive) {
+			return true;
+		} else {
 		return false;
 	}
-
+	}
 	/*
 	 * 26. Return true if the given non-negative number is 1 or 2 less than a
 	 * multiple of 20. So for example 38 and 39 return true, but 40 returns false.
