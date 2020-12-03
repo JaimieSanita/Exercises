@@ -3,11 +3,11 @@ package com.techelevator;
 public class Lecture {
 
     /*
-    1. Return the created array
+    1. Return the created array; example of static initialization because elements defined in array 
     */
     public int[] returnArray() {
         int[] array = { 80, 8080, 443 };
-        return null;
+        return array;
     }
 
     /*
@@ -15,7 +15,7 @@ public class Lecture {
     */
     public int returnFirstElement() {
         int[] portNumbers = { 80, 8080, 443 };
-        return 1;
+        return portNumbers[0];
     }
 
     /*
@@ -23,51 +23,62 @@ public class Lecture {
     */
     public int returnLastElement() {
         int[] portNumbers = { 80, 8080, 443 };
-        return 1;
+        int lastIndex = portNumbers.length -1;
+        //the lastIndex is length of array - 1
+        //can use variables that are int because declared 
+        return portNumbers[lastIndex];
     }
 
     /*
     4. Return the first element of the array from the parameters
     */
     public int returnFirstElementOfParam(int[] passedInArray) {
-        return 1;
+    	if (passedInArray == null || passedInArray.length == 0) { //defensive coding; in case first element is null or in case last element is 0, we return 0 instead of error
+    		return 0;
+    	}
+        return passedInArray[0];
     }
 
     /*
     5. Return the last element of the array from the parameters
     */
     public int returnLastElementOfParam(int[] passedInArray) {
-        return 1;
+    	int lastIndex = (passedInArray.length - 1);
+        return passedInArray[lastIndex];
     }
 
     /*
     6. Here, a variable is defined within a block. How can we get the value of that outside of the block in order to
        return it? There are a couple of different ways of doing this, what can you come up with?
+       /to return a variable, the variable must be defined with coding block, pay attention to curly braces {} 
+        * set needed variable (result) to placeholder value (0) because value redefined within inner code block
     */
     public int returnVariableFromBlock(int number) {
+    	int result = 0;
 
         { // A new block with scoped variables
 
-            int result = number * 5;
+            result = number * 5;
 
         } // the result variable disappears here
 
-        return number; // We want to return result here. How?
+        return result; // We want to return result here. How?
     }
 
     /*
     7. What will the variable result be at the end of the method? Change the number in the logic expression so that
        it returns true.
+ 
     */
     public boolean returnOperationInBlock() {
         int result = 5;
 
         {
             int multiplier = 10;
-            result *= multiplier;
+            result *= multiplier; // equivalent to result = result * multiplier
         }
 
-        return result == 1; // <-- Change the number to match result and make this be true
+        return result == 50; // <-- Change the number to match result and make this be true
     }
 
     /*
@@ -88,7 +99,7 @@ public class Lecture {
             double eight = five + three;
         }
 
-        return 0;
+        return one;
     }
 
     /*
@@ -104,7 +115,7 @@ public class Lecture {
             counter++;
         }
 
-        return counter == 1; // What should the number be to return true?
+        return counter == 4; // What should the number be to return true?
     }
 
     /*
@@ -116,7 +127,7 @@ public class Lecture {
         int counter = 0;
 
         //     Start;       Keep going while         Increment by one;
-        for (int i = 1; i < arrayToLoopThrough.length; i++) {
+        for (int i = 0; i < arrayToLoopThrough.length; i++) {
             counter += 1;
         }
 
@@ -132,7 +143,7 @@ public class Lecture {
         int counter = 0;
 
         //     Start;       Keep going while         Increment by one;
-        for (int i = 0; i <= arrayToLoopThrough.length; i++) {
+        for (int i = 0; i < arrayToLoopThrough.length; i++) {
             counter = counter + 1;
         }
 
@@ -149,7 +160,7 @@ public class Lecture {
         int sum = 0;
 
         //     Start;       Keep going while       Increment by;
-        for (int i = 0; i < arrayToLoopThrough.length; i = i + 1) {
+        for (int i = 0; i < arrayToLoopThrough.length; i +=2) {
             sum = sum + arrayToLoopThrough[i];
         }
 

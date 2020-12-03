@@ -185,10 +185,15 @@ public class Exercises {
 	 * intMax(1, 3, 2) → 3 intMax(3, 2, 1) → 3
 	 */
 	public int intMax(int a, int b, int c) {
-		boolean aIsGreaterThanB = (a > b);
-		boolean aIsGreaterThanC = (a > c);
-		if (aIsGreaterThanB && aIsGreaterThanC) {
+		boolean aIsGreatest = (a >= b && a >= c);
+		boolean bIsGreatest = (b >= a && b >= c);
+		boolean cIsGreatest = (c >= a && c >= b);
+		if (aIsGreatest && !bIsGreatest && !cIsGreatest) {
 			return a;
+		} else if ( bIsGreatest && !aIsGreatest && !cIsGreatest) {
+			return b;
+		} else if (cIsGreatest && !aIsGreatest && !bIsGreatest) {
+			return c;
 		} else {
 			return 0;
 		}
@@ -267,7 +272,7 @@ public class Exercises {
 	 * dateFashion(5, 10) → 2 dateFashion(5, 2) → 0 dateFashion(5, 5) → 1
 	 */
 	public int dateFashion(int you, int date) {
-	 if ((you <= 2) || (date <= 2)) {
+		if ((you <= 2) || (date <= 2)) {
 			return 0;
 		} else if (you >= 8 || date >= 8) {
 			return 2;
@@ -361,7 +366,7 @@ public class Exercises {
 	 * false) → "10:00"
 	 */
 	public String alarmClock(int day, boolean vacation) {
-		boolean weekdays = ( day > 0 && day <6);
+		boolean weekdays = (day > 0 && day < 6);
 		if (weekdays && !vacation) {
 			return "7:00";
 		} else if (!weekdays && !vacation) {
@@ -429,14 +434,15 @@ public class Exercises {
 	 * → false
 	 */
 	public boolean old35(int n) {
-		boolean multipleOfThree= (n%3==0);
-		boolean multipleOfFive= (n%5==0);
+		boolean multipleOfThree = (n % 3 == 0);
+		boolean multipleOfFive = (n % 5 == 0);
 		if (multipleOfThree ^ multipleOfFive) {
 			return true;
 		} else {
-		return false;
+			return false;
+		}
 	}
-	}
+
 	/*
 	 * 26. Return true if the given non-negative number is 1 or 2 less than a
 	 * multiple of 20. So for example 38 and 39 return true, but 40 returns false.
@@ -444,8 +450,14 @@ public class Exercises {
 	 * false
 	 */
 	public boolean less20(int n) {
-	        return ( n + 1 ) % 20 == 0 || ( n + 2 ) % 20 == 0;
-	    }
+		boolean oneLess = ((n + 1) % 20 == 0);
+		boolean twoLess = ((n + 2) % 20 == 0);
+		if (oneLess || twoLess) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	/*
 	 * 27. Given a non-negative number "num", return true if num is within 2 of a
@@ -453,7 +465,23 @@ public class Exercises {
 	 * is 2. nearTen(12) → true nearTen(17) → false nearTen(19) → true
 	 */
 	public boolean nearTen(int num) {
-		return false;
+		int numModTen = (num % 10);
+		boolean withinTwo = (numModTen == 8 || numModTen == 9 || numModTen == 0 || numModTen == 1 || numModTen == 2);
+		// 8 8
+		// 9 9
+		// 10 0 ; consider multiple of 10
+		// 11 1
+		// 12 2
+		// 18 8
+		// 19 9
+		// 20 0
+		// 21 1
+		// 22 2
+		if (withinTwo) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*
@@ -462,20 +490,31 @@ public class Exercises {
 	 * return 19. teenSum(3, 4) → 7 teenSum(10, 13) → 19 teenSum(13, 2) → 19
 	 */
 	public int teenSum(int a, int b) {
-		return 0;
+		boolean teenRangeExtraLucky = ((a >= 13 && a <= 19) || (b >= 13 && b <= 19));
+		if (teenRangeExtraLucky) {
+			return 19;
+		} else {
+			return a + b;
+		}
 	}
 
 	/*
 	 * 29. Your cell phone rings. Return true if you should answer it. Normally you
 	 * answer, except in the morning you only answer if it is your mom calling. In
-	 * all cases, if you are asleep, you do not answer. answerCell(false, false,
-	 * false) → true answerCell(false, false, true) → false answerCell(true,
+	 * all cases, if you are asleep, you do not answer. 
+	 * answerCell(false, false,
+	 * false) → true 
+	 * answerCell(false, false, true) → false 
+	 * answerCell(true,
 	 * false, false) → false
 	 */
 	public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
 		return false;
 	}
-
+		// morning only answer mom
+		// in all cases, if asleep no answer
+		// answer except if morning & mom or asleep
+		
 	/*
 	 * 30. We are having a party with amounts of tea and candy. Return the int
 	 * outcome of the party encoded as 0=bad, 1=good, or 2=great. A party is good
