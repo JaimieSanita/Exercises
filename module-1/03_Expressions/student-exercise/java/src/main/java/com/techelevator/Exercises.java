@@ -317,6 +317,7 @@ public class Exercises {
 	 * yourCakeAndEatItToo(11.00, false) → "special"
 	 */
 	public String yourCakeAndEatItToo(double mealAmount, boolean isBirthday) {
+		double adjustedMealAmount = (mealAmount +=5);
 		boolean standardDessertCat = (mealAmount <= 10);
 		boolean specialDessertCat = (mealAmount <= 15 && mealAmount > 10);
 		boolean ginormousDessertCat = (mealAmount > 15);
