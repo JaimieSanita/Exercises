@@ -161,12 +161,14 @@ public class Exercises {
 	public int sum13(int[] nums) {
 		int sumNum = 0;
 		for (int i = 0; i < nums.length; i++) {
-			if (nums[i] !=13) {						//will not stop # after 13
+			if (nums[i] != 13) { // will not stop # after 13
 				sumNum += nums[i];
-			} if (nums.length == 0 || (nums[i - 1] != 13)) {
+			}
+			if (nums.length == 0 || (nums[i - 1] != 13)) {
 				return 0;
 			}
-		}return sumNum;
+		}
+		return sumNum;
 	}
 
 	/*
@@ -175,8 +177,22 @@ public class Exercises {
 	 * 1, 2]) → false
 	 */
 	public boolean has22(int[] nums) {
+		// array is called nums
+		// boolean named has22
+		// return true if array contains a 2 next to a 2 anywhere
+		// for loop through all elements of array
+		for (int i = 1; i < nums.length; i++) {
+			// create boolean if 2 next to 2
+			boolean twoTwo = (nums[i] == 2 && nums[i - 1] == 2);
+			// if 2 next to 2
+			if (twoTwo) {
+				return true;
+			}
+		}
 		return false;
 	}
+
+
 
 	/*
 	 * 14. Given an array of ints, return true if the array contains no 1's and no

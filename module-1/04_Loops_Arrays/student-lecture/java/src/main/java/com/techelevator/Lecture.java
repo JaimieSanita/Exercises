@@ -153,6 +153,7 @@ public class Lecture {
     /*
     12. We want this loop to only count every other item starting at zero. What needs to change in the loop for
         it to do that?
+        Every other count = change count to: i += 2
     */
     public boolean returnSumEveryOtherNumber() {
         int[] arrayToLoopThrough = { 4, 3, 4, 1, 4, 6 };
@@ -166,4 +167,11 @@ public class Lecture {
 
         return sum == 12;
     }
+
+
+		public void unOh () {
+			if(5>1); {						//this will not print because of the ; behind the if statement. Putting ; after if statements effectively removes block of codes from statment and conditional
+				System.out.println("Yep, five is bigger than one");
+			}
+		}
 }
