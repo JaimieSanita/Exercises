@@ -112,12 +112,12 @@ public class Exercises {
 	 * 1]) → 2 sum2([1, 1, 1, 1]) → 2
 	 */
 	public int sum2(int[] nums) {
-		if (nums.length==1) {
+		if (nums.length == 1) {
 			return nums[0];
-		} else if (nums.length==0) {
+		} else if (nums.length == 0) {
 			return 0;
-		}else {
-			return nums[0]+nums[1];
+		} else {
+			return nums[0] + nums[1];
 		}
 	}
 
@@ -133,23 +133,24 @@ public class Exercises {
 
 	/*
 	 * 11. Return the number of even ints in the given array. Note: the % "mod"
-	 * operator computes the remainder, e.g. 5 % 2 is 1. 
-	 * countEvens([2, 1, 2, 3, 4])
-	 * → 3 countEvens([2, 2, 0]) → 3 
-	 * countEvens([1, 3, 5]) → 0
+	 * operator computes the remainder, e.g. 5 % 2 is 1. countEvens([2, 1, 2, 3, 4])
+	 * → 3 countEvens([2, 2, 0]) → 3 countEvens([1, 3, 5]) → 0
 	 */
 	public int countEvens(int[] nums) {
-		//method type = int
-		//method name =countEvens
-		//parameter is integer array called nums
-		//must return an integer
-		int evenIntegers=0;
-		for (int i=0; i<nums.length; i++) {
-			if (nums[i]%2==0) {
-			evenIntegers++; }
-	} return evenIntegers;
+		// method type = int
+		// method name =countEvens
+		// parameter is integer array called nums
+		// must return an integer
+		int evenIntegers = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] % 2 == 0) {
+				evenIntegers++;
+			}
+		}
+		return evenIntegers;
 	}
-	//why is there no "return" for if statement block?
+
+	// why is there no "return" for if statement block?
 	/*
 	 * 12. Return the sum of the numbers in the array, returning 0 for an empty
 	 * array. Except the number 13 is very unlucky, so it does not count and numbers
@@ -158,7 +159,14 @@ public class Exercises {
 	 * → 6 sum13([1, 2, 2, 1, 13, 3, 4]) → 10
 	 */
 	public int sum13(int[] nums) {
-		return 0;
+		int sumNum = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] !=13) {						//will not stop # after 13
+				sumNum += nums[i];
+			} if (nums.length == 0 || (nums[i - 1] != 13)) {
+				return 0;
+			}
+		}return sumNum;
 	}
 
 	/*
@@ -167,8 +175,9 @@ public class Exercises {
 	 * 1, 2]) → false
 	 */
 	public boolean has22(int[] nums) {
-	return false;
+		return false;
 	}
+
 	/*
 	 * 14. Given an array of ints, return true if the array contains no 1's and no
 	 * 3's. lucky13([0, 2, 4]) → true lucky13([1, 2, 3]) → false lucky13([1, 2,
