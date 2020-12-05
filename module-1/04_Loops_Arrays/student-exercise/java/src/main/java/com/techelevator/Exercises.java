@@ -159,17 +159,23 @@ public class Exercises {
 	 * → 6 sum13([1, 2, 2, 1, 13, 3, 4]) → 10
 	 */
 	public int sum13(int[] nums) {
-		int sumNum = 0;
-		for (int i = 0; i < nums.length; i++) {
-			if (nums[i] != 13) { // will not stop # after 13
-				sumNum += nums[i];
-			}
-			if (nums.length == 0 || (nums[i - 1] != 13)) {
-				return 0;
-			}
+		// array of integers called nums
+		// return sum of elements in array nums: sum integers and for loop
+		// if empty array; return 0: if statement
+		// if array contains 13, do not count in sum: if
+		// if array contain number after 13; do not count in sum: if
+		int sum = 0;
+		  for (int i = 0; i < nums.length; i++) {
+		    if(nums[i] != 13) {
+		      sum += nums[i];
+		      if(i>0 && nums[i-1] == 13)
+		        sum = sum - nums[i];
+		    }
+		  }
+		  return sum;
 		}
-		return sumNum;
-	}
+
+		
 
 	/*
 	 * 13. Given an array of ints, return true if the array contains a 2 next to a 2
@@ -192,16 +198,27 @@ public class Exercises {
 		return false;
 	}
 
-
-
 	/*
 	 * 14. Given an array of ints, return true if the array contains no 1's and no
 	 * 3's. lucky13([0, 2, 4]) → true lucky13([1, 2, 3]) → false lucky13([1, 2,
 	 * 4]) → false
 	 */
 	public boolean lucky13(int[] nums) {
-		return false;
+		for (int i = 0; i < nums.length; i++) {
+			boolean hasOnes = (nums[i] == 1);
+			boolean hasThrees = (nums[i] == 3);
+			boolean hasOnesThrees = hasOnes && hasThrees;
+			if (hasOnes) {
+				return false;
+		} else if (hasThrees) {
+			return false;
+		} else if (hasOnesThrees) {
+			return false;
+		}
+		}
+		return true;
 	}
+	
 
 	/*
 	 * 15. Given an array of ints, return true if the sum of all the 2's in the
@@ -209,6 +226,11 @@ public class Exercises {
 	 * 2, 2]) → false sum28([1, 2, 3, 4]) → false
 	 */
 	public boolean sum28(int[] nums) {
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 2) {
+				
+			}
+		}
 		return false;
 	}
 
