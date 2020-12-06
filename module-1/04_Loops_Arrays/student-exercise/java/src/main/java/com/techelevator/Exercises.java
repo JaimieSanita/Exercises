@@ -165,17 +165,15 @@ public class Exercises {
 		// if array contains 13, do not count in sum: if
 		// if array contain number after 13; do not count in sum: if
 		int sum = 0;
-		  for (int i = 0; i < nums.length; i++) {
-		    if(nums[i] != 13) {
-		      sum += nums[i];
-		      if(i>0 && nums[i-1] == 13)
-		        sum = sum - nums[i];
-		    }
-		  }
-		  return sum;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] != 13) {
+				sum += nums[i];
+				if (i > 0 && nums[i - 1] == 13)
+					sum = sum - nums[i];
+			}
 		}
-
-		
+		return sum;
+	}
 
 	/*
 	 * 13. Given an array of ints, return true if the array contains a 2 next to a 2
@@ -210,15 +208,14 @@ public class Exercises {
 			boolean hasOnesThrees = hasOnes && hasThrees;
 			if (hasOnes) {
 				return false;
-		} else if (hasThrees) {
-			return false;
-		} else if (hasOnesThrees) {
-			return false;
-		}
+			} else if (hasThrees) {
+				return false;
+			} else if (hasOnesThrees) {
+				return false;
+			}
 		}
 		return true;
 	}
-	
 
 	/*
 	 * 15. Given an array of ints, return true if the sum of all the 2's in the
@@ -226,12 +223,15 @@ public class Exercises {
 	 * 2, 2]) → false sum28([1, 2, 3, 4]) → false
 	 */
 	public boolean sum28(int[] nums) {
+		boolean result = false;
+		int sum = 0;
 		for (int i = 0; i < nums.length; i++) {
 			if (nums[i] == 2) {
-				
+				sum = sum + 2;
+			}} if (sum == 8) {			//required nexted if statements; nested if's: outer if true, then 
+				result = true;			//perform inner if; an if/else statement would not perform
 			}
-		}
-		return false;
+			
+			{ return result;
 	}
-
-}
+}}
