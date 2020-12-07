@@ -8,16 +8,17 @@ public class DecimalToBinary {
 		System.out.print("Please enter in a series of decimal values (separated by spaces): ");
 		String decimalValueString = userInput.nextLine();	
 		String [] decimalsAsIndividualStrings = decimalValueString.split(" "); 
-		 double[] decimalArray = new double[decimalsAsIndividualStrings.length]; //array called decimals holding individual decimals
+		 double[] decimalArray = new double[decimalsAsIndividualStrings.length]; // double array called decimals holding individual decimals
 		
+		 int binaryCount = 0;
 		 int [] binaryArray = new int [20];
-		 for(int i = 0; i < 0; i--) {	//loop through individual decimals
+		 for(int i = 0; i < decimalArray.length; i++) {	//loop through individual decimals
 			 String stringToParse = decimalsAsIndividualStrings[i]; //pull out decimal from array
 			 int decimal = Integer.parseInt(stringToParse);
 			 	decimal /= 2;
 			 	binaryArray[i] = decimal % 2;
-				 int binary = binaryArray[i];
-			 System.out.print(stringToParse + " in binary is " + binary + "\n");
+				 binaryCount = binaryArray[i];
+			 System.out.print(stringToParse + " in binary is " + binaryCount + "\n");
 		 }
 	}
 	}
