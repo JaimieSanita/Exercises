@@ -11,12 +11,12 @@ public class DecimalToBinary {
 		 double[] decimalArray = new double[decimalsAsIndividualStrings.length]; // double array called decimals holding individual decimals
 		
 		 int binaryCount = 0;
-		 int [] binaryArray = new int [20];
+		 Integer [] binaryArray = new Integer [20]; //string array 
 		 for(int i = 0; i < decimalArray.length; i++) {	//loop through individual decimals
 			 String stringToParse = decimalsAsIndividualStrings[i]; //pull out decimal from array
-			 int decimal = Integer.parseInt(stringToParse);
-			 	decimal /= 2;
-			 	binaryArray[i] = decimal % 2;
+			 int decimal = Integer.parseInt(stringToParse); //parse decimal to integer
+			 	decimal /= 10;
+		 binaryArray[i] = decimal%2; //convert back to string, 
 				 binaryCount = binaryArray[i];
 			 System.out.print(stringToParse + " in binary is " + binaryCount + "\n");
 		 }

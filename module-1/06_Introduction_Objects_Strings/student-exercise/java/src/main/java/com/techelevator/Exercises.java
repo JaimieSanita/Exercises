@@ -251,16 +251,15 @@ public class Exercises {
 	 * hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
-		String containsBadAt0 = str.substring(0, 3);
-		String containsBadAt1 = str.substring(1, 4);
 		if (str.length() == 3 && str.equals("bad")) {
 			return true;
-		} if (containsBadAt0.equals("bad") || containsBadAt1.equals("bad")) {
-			return true;
-		} else
-		return false;
-	}
-
+		} else if (str.length() > 3) {
+			if ((str.substring(0,3).equals("bad"))|| str.substring(1,4).equals("bad")) {
+		}	return true;
+	}   
+	return false;
+	
+}
 	/*
 	 * Given a string and a non-negative int n, return a larger string that is n
 	 * copies of the original string. stringTimes("Hi", 2) → "HiHi"
@@ -282,24 +281,28 @@ public class Exercises {
 	 * "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		String holdFront = "";
-		if (str.length() < 3) {
-			return str;
-		} else {
-		for(int i=0; i < n; i++) {
-			String frontChars = str.substring(0, 3);
-			holdFront += frontChars;
+		int copiesOfX = 0;
+				for(int i=0; i < n; i++) {
+		if (n >= 0 && str.length() >= 3) {
+		String frontOfString = str.substring(0,2);
 		}
-		return holdFront;
+		}
+		return "string";
 	}
-	}
+	
 	/*
 	 * Count the number of "xx" in the given string. We'll say that overlapping is
 	 * allowed, so "xxx" contains 2 "xx". countXX("abcxx") → 1 countXX("xxx") →
 	 * 2 countXX("xxxx") →
 	 */
 	public int countXX(String str) {
-		return 0;
+		int countXX = 0;
+		for (int i = 0; i < str.length()-1; i++) {				//length-1 because index is one less than length
+			if (str.substring(i, i+2).equals("xx")) {			//shouldn't use .contains() because only sees first
+				countXX++;										//use ++ operator to add 1 because we're keeping count
+			}
+		}
+		return countXX;
 	}
 
 	/*
