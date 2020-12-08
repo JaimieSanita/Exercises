@@ -281,13 +281,16 @@ public class Exercises {
 	 * "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		int copiesOfX = 0;
-				for(int i=0; i < n; i++) {
-		if (n >= 0 && str.length() >= 3) {
-		String frontOfString = str.substring(0,2);
+		String result = "";
+		if (str.length() > 3) {
+			return str;
+		} else { 
+		String frontOfString = str.substring(0,3); //(0,3) because does not include 3
+		for(int i = 0; i < n; i++) {
+		result += frontOfString;
 		}
 		}
-		return "string";
+		return result;
 	}
 	
 	/*
