@@ -137,7 +137,7 @@ public class Exercises {
 		return false;
 		}
 	}
-//boolean foundTwoOrMore = (count >= 2);
+	
 	/*
 	 * Given an array of Integers, return a List that contains the same Integers (as
 	 * Strings). Except any multiple of 3 should be replaced by the String "Fizz",
@@ -153,7 +153,21 @@ public class Exercises {
 	 * code (e.g. if x = 1 then x.ToString() equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		
+		List<String> intSameAsString = new ArrayList<String>();
+		
+		for( Integer fizzBuzzCheck : integerArray) {
+			if (fizzBuzzCheck % 3 == 0 && fizzBuzzCheck % 5 == 0) {
+				intSameAsString.add("FizzBuzz");
+			} else if (fizzBuzzCheck % 3 == 0) {
+				intSameAsString.add("Fizz");
+			} else if (fizzBuzzCheck % 5 == 0) {
+				intSameAsString.add("Buzz");
+			} else {
+				intSameAsString.add(fizzBuzzCheck.toString());
+			}
+		}
+		return intSameAsString;
 	}
 
 	/*
