@@ -15,7 +15,7 @@ public class DecimalToBinary {
 		 for(int i = 0; i < decimalArray.length; i++) {	//loop through individual decimals
 			 String stringToParse = decimalsAsIndividualStrings[i]; //pull out decimal from array
 			 int decimal = Integer.parseInt(stringToParse); //parse decimal to integer
-			 	decimal /= 10;
+			 	decimal /= 2;
 		 binaryArray[i] = decimal%2; //convert back to string, 
 				 binaryCount = binaryArray[i];
 			 System.out.print(stringToParse + " in binary is " + binaryCount + "\n");
