@@ -2,6 +2,7 @@ package com.techelevator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Exercises {
 
@@ -128,7 +129,7 @@ public class Exercises {
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
 		int petersMoney = peterPaul.get("Peter");
 		int paulsMoney = peterPaul.get("Paul");
-			if (paulsMoney >= 10000 && petersMoney >= 5000) {
+		if (paulsMoney >= 10000 && petersMoney >= 5000) {
 			int quarterMoneyPaul = (paulsMoney / 4);
 			int quarterMoneyPeter = (petersMoney / 4);
 			peterPaul.put("PeterPaulPartnership", quarterMoneyPeter + quarterMoneyPaul);
@@ -151,15 +152,14 @@ public class Exercises {
 	 * "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		
-		Map<String, String> everyOther = new HashMap<String,String>();
-		
-		for(Map.Entry<String, String> everyString : everyOther.entrySet()) {
-			
-			
-			
+		Map<String, String> everyOther = new HashMap<String, String>();
+		//loop over string array words
+		for (String characters : words) {
+			//add to map			
+			everyOther.put(characters.charAt(0) + "", characters.charAt(characters.length()- 1) + "");
 		}
-		return null;
+		return everyOther;
+
 	}
 
 	/*
