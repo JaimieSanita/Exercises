@@ -176,9 +176,9 @@ public class Exercises {
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
 		Map<String, Integer> counting = new HashMap<String, Integer>();
-		//iterating through string of arrays called words
+		//iterating through string of array inputs called words
 		for (String key: words) {
-			//create string to hold inputs
+			//create string to hold words' inputs
 			String hold = key;
 			//check to see if map has inputs from words String array
 			if (counting.containsKey(hold)) {
@@ -206,7 +206,8 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		Map<Integer, Integer> count = new HashMap<Integer, Integer>();
+		return count;
 	}
 
 	/*
@@ -220,7 +221,8 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
-		return null;
+		Map<String, Boolean> difWords = new HashMap<String, Boolean>();
+		return difWords;
 	}
 
 	/*
@@ -236,7 +238,8 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
-		return null;
+		Map<String, Integer> inventory = new HashMap<String, Integer>();
+		return inventory;
 	}
 
 	/*
@@ -260,7 +263,8 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> last2Revisited(String[] words) {
-		return null;
+		Map<String, Integer> revisit = new HashMap<String, Integer>();
+		return revisit;
 	}
 
 }
