@@ -175,7 +175,23 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		Map<String, Integer> counting = new HashMap<String, Integer>();
+		//iterating through string of arrays called words
+		for (String key: words) {
+			//create string to hold inputs
+			String hold = key;
+			//check to see if map has inputs from words String array
+			if (counting.containsKey(hold)) {
+				//if it does contain, get it 
+				int count = counting.get(hold);
+				//now add back to map
+				counting.put(hold, count+1); //add +1 to increment count
+			} else {
+				counting.put(hold, 1); //value set at one because if not more than one, only 1
+			}
+				
+		}
+		return counting;
 	}
 
 	/*
