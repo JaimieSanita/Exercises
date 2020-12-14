@@ -3,9 +3,9 @@ package com.techelevator;
 public class Television {
 
 	
-	private boolean isOn;
-	private int currentChannel;
-	private int currentVolume;
+	private boolean isOn = defaultOn;
+	private int currentChannel = defaultChannel;
+	private int currentVolume = defaultVolume;
 	
 	public boolean isOn() {
 		return this.isOn;
@@ -25,5 +25,67 @@ public class Television {
 	public static final int defaultChannel = 3;
 	public static final int defaultVolume = 2;
 	
-	
-}
+    public void turnOff() {
+    if (isOn) {
+    	this.isOn = false;
+    }}
+    
+    public void turnOn() {
+    	if (!isOn) {
+    		this.isOn = true;
+    		this.currentChannel = defaultChannel;
+    		this.currentVolume = defaultVolume;
+    	}
+    }
+    
+    public void changeChannel(int newChannel) {
+    	if (isOn) {
+    		if (newChannel > 3 && newChannel < 8) {
+    			this.currentChannel = newChannel;
+    		}
+    	}
+    }
+    
+    public void channelUp() {
+    	if(isOn) {
+    		if (getCurrentChannel() > 18) {
+    			this.currentChannel = 3;
+    		} else {
+    			this.currentChannel = getCurrentChannel() + 1;
+    			System.out.println(this.currentChannel);
+    		}
+    		}
+    	}
+    
+    public void channelDown() {
+    	if(isOn) {
+    		if (getCurrentChannel() > 3) {
+    			this.currentChannel = getCurrentChannel() - 1;
+    		} else {
+    			this.currentChannel = 18;
+    		}
+    		}
+    	}
+    
+    
+    public void raiseVolume() {
+    	if(isOn) {
+    		if (getCurrentVolume() > 10) {
+    			this.currentVolume = getCurrentVolume() + 0;
+    		} else {
+    			this.currentVolume = getCurrentVolume() +1;
+    		}	
+    		}
+    		}
+    		
+    
+    public void lowerVolume() {
+    	if(isOn) {
+    		if (getCurrentVolume() > 0) {
+    			this.currentVolume = getCurrentVolume() -1;
+    		}
+    		}
+    	}
+    }
+
+
