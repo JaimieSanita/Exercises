@@ -40,7 +40,7 @@ public class Television {
     
     public void changeChannel(int newChannel) {
     	if (isOn) {
-    		if (newChannel > 3 && newChannel < 8) {
+    		if (newChannel >= 3 && newChannel <= 18) {
     			this.currentChannel = newChannel;
     		}
     	}
@@ -48,11 +48,10 @@ public class Television {
     
     public void channelUp() {
     	if(isOn) {
-    		if (getCurrentChannel() > 18) {
-    			this.currentChannel = 3;
-    		} else {
+    		if (getCurrentChannel() < 18) {
     			this.currentChannel = getCurrentChannel() + 1;
-    			System.out.println(this.currentChannel);
+    		} else {
+    			this.currentChannel = 3;
     		}
     		}
     	}
