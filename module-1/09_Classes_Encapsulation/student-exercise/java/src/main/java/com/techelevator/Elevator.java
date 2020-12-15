@@ -36,7 +36,8 @@ public class Elevator {
 	//constructor
 	
 	 public Elevator(int numberOfLevels) {
-		numberOfLevels = getNumberOfFloors();
+		numberOfLevels = getNumberOfFloors() - getCurrentFloor();
+	
 	}
 	
 	//methods
