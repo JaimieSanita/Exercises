@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class BankAccount implements Accountable{
+public class BankAccount implements Accountable {
 
 	//INSTANCE VARIABLES
     private String accountHolderName;

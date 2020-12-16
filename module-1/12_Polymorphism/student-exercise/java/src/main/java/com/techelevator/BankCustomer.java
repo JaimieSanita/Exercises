@@ -59,6 +59,9 @@ public class BankCustomer {
 			
 			//Customers whose combined account balances (credits minus debts) are at least $25,000 are considered VIP customers and 
 			//receive special privileges.
+			
+			//because "combined acct balance" need to SUM; create variable
+			//to access each account use loop
 
 			//Add a method called isVip to the BankCustomer class that returns true if the sum of all accounts belonging to the customer 
 			//is at least $25,000 and false otherwise.
@@ -66,11 +69,12 @@ public class BankCustomer {
 			//Once the BankCustomerTests unit test passes, this section is complete.
 			
 			public boolean isVip() {
+				//create sum variable
 				int accountCombined = 0;
 				//loop through accounts and get balance
-				for(Accountable account: this.getAccounts()) {
+				for(Accountable account: this.getAccounts()) { //for each account in this.getAccounts(), the new Accountable called account
 					//add balance to accountCombined variable
-					accountCombined += account.getBalance();
+					accountCombined += account.getBalance(); //get the balance and store in sum variable
 				} if (accountCombined >= 25000) {
 					return true;
 				} else {
