@@ -13,14 +13,17 @@ public class DateFashion {
     dateFashion(5, 5) → 1
     */
     public int getATable(int you, int date) {
+    	//default result = maybe
         int getTable = 1;
 
+        	//you <=2 OR date <= 2 RESULT 0 = NO table
         if (you <= 2 || date <= 2) {
             getTable = 0;
+            //you >= 8 OR date >= 8 RESULT 2 = GET table
         } else if (you >= 8 || date >= 8) {
             getTable = 2;
         }
-
+        	//otherwise RESULT 1 = maybe get table
         return getTable;
     }
 

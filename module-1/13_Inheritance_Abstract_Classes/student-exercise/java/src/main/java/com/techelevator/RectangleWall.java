@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class RectangleWall extends Wall{
+public class RectangleWall extends Wall {
 
 	//INSTANCE VARIABLES
 	private int length;

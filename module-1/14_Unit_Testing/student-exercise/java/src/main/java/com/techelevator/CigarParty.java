@@ -14,9 +14,11 @@ public class CigarParty {
     public boolean haveParty(int cigars, boolean isWeekend) {
         int minimumCigarCount = 40;
         int maximumCigarCount = 60;
-
+        						//cigars >= 40
         boolean hasMinimumCigars = cigars >= minimumCigarCount;
+        								//if NOT weekend && cigars <=60 OR is weekend
         boolean withinMaxRangeOfCigars = (!isWeekend && cigars <= maximumCigarCount) || isWeekend;
+        					//cigars>=40     && if NOT weekend && cigars <=60 OR is weekend
         boolean successful = hasMinimumCigars && withinMaxRangeOfCigars;
 
         return successful;

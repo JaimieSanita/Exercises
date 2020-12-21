@@ -64,9 +64,24 @@ public class LectureTest {
 		/* The assertEquals method validates that two values are equal and
 		 * fails the test if they are not equal */
 
+		//ARRANGE step
+		//Construct all the classes and values you need to make the test
+		//called length of string
+		int expectedLength = 4;
 		String theString = "Java"; // Arrange
+		
+		//ACT
+		//Run code intending to test
+		//shouldn't have much code here
+		//at most a loop
 		int length = theString.length(); // Act
-		Assert.assertEquals(4, length); // Assert
+		
+		//ASSERT phase
+		//Write one or more assertions to validate the act returned the right value and the class in question is in right state
+							//error message						//expectedValue	//givenValue
+		Assert.assertEquals("We expected a string of length 4", expectedLength, length); // Assert,
+							
+		
 	}
 
 	@Test
@@ -77,6 +92,8 @@ public class LectureTest {
 		 * is true and fails the test if it is false. */
 
 		String theString = "Hello World!"; // Arrange
+		
+									//expect true
 		boolean startsWithHello = theString.startsWith("Hello"); // Act
 
 		/* every assert method allows the first parameter to be a String that contains a message
@@ -85,6 +102,7 @@ public class LectureTest {
 		 * This is particularly helpful with assertTrue as otherwise the failure output would simply
 		 * state "Expected: true Actual: false", which sometimes isn't much help in figuring out
 		 * what went wrong */
+						//error message									//because boolean with TorF, assert true and do not need additional parameter
 		Assert.assertTrue("String did not start with Hello as expected.", startsWithHello); // Assert
 	}
 
@@ -94,7 +112,7 @@ public class LectureTest {
 
 		/* The fail method will cause a test to fail */
 
-		Assert.fail("This is how I can force a test to fail");
+		Assert.fail("This is how I can force a test to fail"); //causes test to fail when hit certain case
 	}
 
 	public void this_method_is_not_a_test_because_it_does_not_have_the_Test_annotation() {
