@@ -44,7 +44,7 @@ public class FrontTimesTest {
 		
 		String actualResult = fronting.generateString(expectedString, expectedNumber);
 		
-		Assert.assertEquals("The result should be ChoCho.",
+		Assert.assertEquals("The result should be ChoChoCho.",
 				expectedResult, 
 				actualResult);
 		
@@ -61,7 +61,7 @@ public class FrontTimesTest {
 		
 		String actualResult = fronting.generateString(expectedString, expectedNumber);
 		
-		Assert.assertEquals("The result should be ChoCho.",
+		Assert.assertEquals("The result should be AbcAbcAbc.",
 				expectedResult, 
 				actualResult);
 		

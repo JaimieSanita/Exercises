@@ -25,7 +25,7 @@ public class DateFashionTest {
 
 		int actualResult = table.getATable(expectedYou, expectedDate);
 
-		Assert.assertEquals("You and your date GET a table at the restaurant.", expectedResult, actualResult);
+		Assert.assertEquals("You and your date GET a table at the restaurant. Expected 2.", expectedResult, actualResult);
 
 	}
 	
@@ -38,7 +38,7 @@ public class DateFashionTest {
 
 		int actualResult = table.getATable(expectedYou, expectedDate);
 
-		Assert.assertEquals("You and your date should NOT get a table at the restaurant.", expectedResult, actualResult);
+		Assert.assertEquals("You and your date should NOT get a table at the restaurant. Expected 0.", expectedResult, actualResult);
 
 	}
 	
@@ -51,7 +51,7 @@ public class DateFashionTest {
 
 		int actualResult = table.getATable(expectedYou, expectedDate);
 
-		Assert.assertEquals("You and your date MAY get a table at the restaurant.", expectedResult, actualResult);
+		Assert.assertEquals("You and your date MAY get a table at the restaurant. Expected 1.", expectedResult, actualResult);
 
 	}
 	
@@ -64,7 +64,7 @@ public class DateFashionTest {
 
 		int actualResult = table.getATable(expectedYou, expectedDate);
 
-		Assert.assertEquals("You and your date should NOT get a table at the restaurant.", expectedResult, actualResult);
+		Assert.assertEquals("You and your date should NOT get a table at the restaurant. Expected 0.", expectedResult, actualResult);
 
 	}
 	

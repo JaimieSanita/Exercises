@@ -24,7 +24,7 @@ public class Less20Test {
 		
 		boolean actualResult = multiple.isLessThanMultipleOf20(expectedValue);
 		
-		Assert.assertTrue("The provided number should be one less than a multiple of 20.",
+		Assert.assertTrue("The provided number should be one less than a multiple of 20. Expected true.",
 				actualResult);
 	}
 	
@@ -36,7 +36,7 @@ public class Less20Test {
 		
 		boolean actualResult = multiple.isLessThanMultipleOf20(expectedValue);
 		
-		Assert.assertTrue("The provided number should be one two than a multiple of 20.",
+		Assert.assertTrue("The provided number should be one two than a multiple of 20. Expected true.",
 				actualResult);
 	}
 	
@@ -48,7 +48,7 @@ public class Less20Test {
 		
 		boolean actualResult = multiple.isLessThanMultipleOf20(expectedValue);
 		
-		Assert.assertFalse("The provided number is not one less or two less than a multiple of 20.",
+		Assert.assertFalse("The provided number is not one less or two less than a multiple of 20. Expected false.",
 				actualResult);
 	}
 	
@@ -60,7 +60,7 @@ public class Less20Test {
 		
 		boolean actualResult = multiple.isLessThanMultipleOf20(expectedValue);
 		
-		Assert.assertFalse("The provided number cannot be negative.",
+		Assert.assertFalse("The provided number cannot be negative. Expected false.",
 				actualResult);	
 	}
 

@@ -11,10 +11,10 @@ import org.junit.runners.MethodSorters;
 
 public class MaxEnd3Test {
 	
-	// MakeArray([1, 2, 3]) → [3, 3, 3]
-	// MakeArray([11, 5, 9]) → [11, 11, 11]
-	// MakeArray([2, 11, 3]) → [3, 3, 3]
-	//null
+	// MakeArray([1, 2, 3]) → [3, 3, 3] *
+	// MakeArray([11, 5, 9]) → [11, 11, 11] *
+	// MakeArray([2, 11, 3]) → [3, 3, 3] *
+	
 	
 	@Test
 	public void larger_third() {
@@ -61,19 +61,6 @@ public class MaxEnd3Test {
 		
 	}
 	
-	@Test
-	public void array_not_null() {
-		MaxEnd3 test = new MaxEnd3();
-		int[] expectedNums = null;
-		
-		
-		int[] actualResult = test.makeArray(expectedNums);
-		
-		Assert.assertNotNull("The int array should not be null.",
-				expectedNums);
-		
-		
-	}
 	
 	
 	

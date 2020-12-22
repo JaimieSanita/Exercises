@@ -35,7 +35,7 @@ public class AnimalGroupNameTests {
 		String actualGroup = copyOfClass.getHerd(animalName);
 		
 		//ASSERT
-		Assert.assertEquals("The animal provided should return proper group.",
+		Assert.assertEquals("The animal provided should return proper group. Expected Crash.",
 				expectedGroup,
 				actualGroup);
 	}
@@ -48,7 +48,7 @@ public class AnimalGroupNameTests {
 				
 		String actualGroup = copyOfClass.getHerd(providedName);
 		
-		Assert.assertEquals("The animal name provided does not exist",
+		Assert.assertEquals("The animal name provided does not exist.",
 				expectedGroup, 
 				actualGroup);
 		
@@ -68,9 +68,9 @@ public class AnimalGroupNameTests {
 			
 		//ASSERT
 			//asserttrue/false
-		Assert.assertNotNull("String should not be null.", 
+		Assert.assertNotNull("Animal name should not be null.", 
 				actualValue);
-		Assert.assertEquals("If animal name is null, return Unknown for group name.",
+		Assert.assertEquals("If animal name is null, return unknown for group name.",
 				"unknown",
 				actualValue);
 	}

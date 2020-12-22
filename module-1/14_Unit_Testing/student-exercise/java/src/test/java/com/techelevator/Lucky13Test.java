@@ -24,7 +24,7 @@ public class Lucky13Test {
 			
 			boolean actualResult = lucky.getLucky(expectedArray);
 			
-			Assert.assertTrue("The array of ints cannot contain any 1's and 3's.",
+			Assert.assertTrue("The array of ints cannot contain any 1's and 3's. Expected true.",
 					actualResult);
 		
 		}
@@ -37,7 +37,7 @@ public class Lucky13Test {
 			
 			boolean actualResult = lucky.getLucky(expectedArray);
 			
-			Assert.assertFalse("The array of ints contained 1's and 3's.",
+			Assert.assertFalse("The array of ints contained 1's and 3's. Expected false.",
 					actualResult);
 		
 		}
@@ -50,7 +50,7 @@ public class Lucky13Test {
 			
 			boolean actualResult = lucky.getLucky(expectedArray);
 			
-			Assert.assertFalse("The array of ints contained 1's.",
+			Assert.assertFalse("The array of ints contained 1's. Expected false.",
 					actualResult);
 		
 		}
@@ -63,7 +63,7 @@ public class Lucky13Test {
 			
 			boolean actualResult = lucky.getLucky(expectedArray);
 			
-			Assert.assertNotNull("The array of ints cannot be null.",
+			Assert.assertNotNull("The array of ints cannot be null. Expected false.",
 					actualResult);
 		
 		}

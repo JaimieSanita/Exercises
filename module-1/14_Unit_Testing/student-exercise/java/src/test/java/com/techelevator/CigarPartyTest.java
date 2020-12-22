@@ -29,7 +29,7 @@ public class CigarPartyTest {
 		
 		boolean actualResult = copyOfClass.haveParty(expectedCigar, weekend);
 		
-		Assert.assertTrue("A squirrel party with cigars provided on the weekend should be successful",
+		Assert.assertTrue("A squirrel party with 41 cigars on the weekend should be successful. Expeted true.",
 				actualResult);
 		
 	}
@@ -43,7 +43,7 @@ public class CigarPartyTest {
 		
 		boolean actualResult = copyOfClass.haveParty(expectedCigar, weekend);
 		
-		Assert.assertTrue("A squirrel party with cigars provided on the weekend should be successful",
+		Assert.assertTrue("A squirrel party with 41 cigars on a weekeday should be successful. Expected true.",
 				actualResult);
 	
 	}
@@ -56,7 +56,7 @@ public class CigarPartyTest {
 		
 		boolean actualResult = copyOfClass.haveParty(expectedCigar, weekend);
 		
-		Assert.assertFalse("The cigar party should be unsuccessful with 0 cigars.",
+		Assert.assertFalse("The cigar party should be unsuccessful with 0 cigars. Expected false.",
 				actualResult);
 	}
 	
@@ -68,7 +68,7 @@ public class CigarPartyTest {
 		
 		boolean actualResult = copyOfClass.haveParty(expectedCigar, weekend);
 		
-		Assert.assertFalse("The cigar party should be unsuccessful with 1000 cigars on a weekday.",
+		Assert.assertFalse("The cigar party should be unsuccessful with 1000 cigars on a weekday. Expected false.",
 				actualResult);
 	}
 	
@@ -80,7 +80,7 @@ public class CigarPartyTest {
 		
 		boolean actualResult = copyOfClass.haveParty(expectedCigar, weekend);
 		
-		Assert.assertFalse("Cannot have negative cigars at a successful cigar party.",
+		Assert.assertFalse("Cannot have negative cigars at a successful cigar party. Expected false.",
 				actualResult);
 	}
 	

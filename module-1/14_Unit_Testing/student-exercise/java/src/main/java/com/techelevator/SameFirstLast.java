@@ -10,7 +10,9 @@ public class SameFirstLast {
      IsItTheSame([1, 2, 1]) → true
      */
     public boolean isItTheSame(int[] nums) {
+    	//if nums is null, false
     	if (nums == null) return false;
+    	//if nums not null, and nums not empty, and first element equal to last element =TRUE
     	else return nums.length > 0 && nums[0] == nums[nums.length - 1];
     }
 
