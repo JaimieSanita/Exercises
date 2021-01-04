@@ -70,7 +70,7 @@ public class RTNValidator {
 										//we have reference to something that exists outside Java Operating Machine
 										//Java garbage collector can not clean up because outside
 										//once file opened, "locked", exclusively open for you & no one else can open until file closed
-		
+	
 		
 		
 		
