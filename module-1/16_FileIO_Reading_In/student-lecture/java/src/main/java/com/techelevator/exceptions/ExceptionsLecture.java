@@ -15,18 +15,25 @@ public class ExceptionsLecture {
 		 * code to handle it. */
 		System.out.println("The following cities: ");
 		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
+		
+		
 		try {
+			//dangerous code; instead of looping we check static indexes
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
 			System.out.println(cities[2]);
 			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
-			System.out.println("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
+			
+			System.out.println("We're done printing cities"); // This line won't execute because the previous statement throws an Exception
 		} catch(ArrayIndexOutOfBoundsException e) {
 			// Flow of control resumes here after the Exception is thrown
 			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
+		} finally {
+			System.out.println("are all in Ohio."); //things in a finally block always execute
 		}
 		
 		System.out.println();
+		
 		
 		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
 		try {
@@ -35,22 +42,65 @@ public class ExceptionsLecture {
 			System.out.println("See, I told you nothing would go wrong!");
 		} catch(ArrayIndexOutOfBoundsException e) {  
 			System.out.println("Call the Darwin Awards...");
+			e.printStackTrace();
+			//log this to my logging system
+			//throw e
 		}
 		
 		System.out.println();
 		
 		/* catch statements can take advantage of polymorphism. The catch block will handle any Exception that 
 		 * matches the declared Exception type, including subclasses of the declared type */
+		int hoursWorked = -1;
 		try {
 			System.out.println("The standard work week is 40 hours.");
 			System.out.print("How many hours did you work this week? >>> ");
-			int hoursWorked = Integer.valueOf( scan.nextLine() ); 
+			hoursWorked = Integer.valueOf( scan.nextLine() ); 
 			int overtimeHours = hoursWorked - 40;
-			System.out.println("You worked "+overtimeHours+" hours of overtime.");
+			System.out.println("You worked "+ overtimeHours +" hours of overtime.");
+			//NOTE: this is an ANTI-pattern
+			//try to catch the specific exception rather than the generic Exception type
 		} catch(Exception e) { // If a NumberFormatException is thrown by Integer.valueOf(...) it will be caught here since NumberFormatException "is-a" Exception
 			System.out.println("You did it wrong...");
 		}
 		System.out.println();
+		
+		//we can use trycatch with loops to get a valid number
+		
+		 hoursWorked = -1;
+		 
+		 while(hoursWorked < 0) {
+			 System.out.println("The standard work week is 40 hours.");
+			 System.out.println("How many hours did you work this week? >>>");
+			 try {
+			 hoursWorked = Integer.valueOf(scan.nextLine());
+			 }catch (NumberFormatException nfe) {
+				 System.out.println("You must provide your hours as a whole number.");
+			 }
+			 if(hoursWorked < 0) {
+				 System.out.println("You can only work 0 hours or more. Try again.");
+			 }
+		 }
+		 
+		 int overTime = hoursWorked > 40 ? hoursWorked - 40 : 0;
+		 
+		 System.out.println("You worked: " + hoursWorked + " hours and " + overTime + " hours of overTime.");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 				
 		/* we can throw our own Exceptions in response to exceptional cases 
 		 * see the source code of calculateHotelRoomCharges for an example */
