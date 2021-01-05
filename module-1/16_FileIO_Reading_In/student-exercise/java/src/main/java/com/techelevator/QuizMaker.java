@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class QuizMaker {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		
 
 		File inputFile = getInputFileFromUser();
@@ -29,6 +29,9 @@ public class QuizMaker {
 				} 
 				lineNumber++;
 			} 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

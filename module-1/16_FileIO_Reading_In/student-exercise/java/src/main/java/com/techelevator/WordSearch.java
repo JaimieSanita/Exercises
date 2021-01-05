@@ -14,7 +14,7 @@ public class WordSearch {
 	 * @param args
 	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 
 		File inputFile = getInputFileFromUser();
 		String wordSearch = getWordSearch();
@@ -37,6 +37,9 @@ public class WordSearch {
 				} 
 				lineNumber++;
 			} 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
