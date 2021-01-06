@@ -7,36 +7,32 @@ import java.util.Scanner;
 public class QuizMaker {
 
 	public static void main(String[] args) {
-		
 
 		File inputFile = getInputFileFromUser();
 		String wordSearch = getWordSearch();
-		String sensitive = getCaseSensitive();
-		
-		try(Scanner fileScanner = new Scanner(inputFile)) {
-			
-			int lineNumber = 1;
-			
-			while(fileScanner.hasNextLine()) {
-				
+		boolean sensitive = makeCaseSensitive();
+
+		try (Scanner fileScanner = new Scanner(inputFile)) {
+
+			for (int lineNumber = 1; fileScanner.hasNextLine(); lineNumber++) {
+
 				String line = fileScanner.nextLine();
-				if(line.contains(wordSearch)) {
-					
-					
-					
+
+				if (sensitive && line.contains(wordSearch)) {
+
 					System.out.println(lineNumber + ") " + line);
-					
-				} 
-				lineNumber++;
-			} 
+
+				} else if (!sensitive && line.toLowerCase().contains(wordSearch)) {
+					System.out.println(lineNumber + ") " + line);
+				}
+
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	
-	
 	private static File getInputFileFromUser() {
 		Scanner userInput = new Scanner(System.in); // scanner
 		System.out.println("What is the file that should be searched?");
@@ -56,20 +52,24 @@ public class QuizMaker {
 		}
 		return inputFile;
 	}
-	
+
 	private static String getWordSearch() {
-		Scanner userString = new Scanner(System.in);
+		Scanner userInput = new Scanner(System.in);
 		System.out.println("What is the search word you are looking for?");
-		String wordSearch = userString.nextLine();
+		String wordSearch = userInput.nextLine();
 		return wordSearch;
-		
-		
+
 	}
-	
-	private static String getCaseSensitive() {
-		Scanner userAnswer = new Scanner(System.in);
-		System.out.println("Should the search be case sensitive?");
-		String sensitive = userAnswer.nextLine();
-		return sensitive;
+
+	private static boolean makeCaseSensitive() {
+		Scanner userInput = new Scanner(System.in);
+		System.out.println("Should the search be case sensitive? Enter: Y or N");
+		String sensitive = userInput.nextLine();
+		if (sensitive.contains("y") || sensitive.contains("Y")) {
+			return true;
+		} else {
+
+			return false;
+		}
 	}
 }

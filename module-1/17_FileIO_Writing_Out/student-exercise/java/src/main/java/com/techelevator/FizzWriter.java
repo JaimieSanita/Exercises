@@ -27,7 +27,7 @@ public class FizzWriter {
 			boolean divisibleThree;
 			boolean divisibleFive;
 
-			for (int i = 1; i <= 300; i++) {
+			for (int i = 1; i <= 300; i++) { //line starts at 1
 				divisibleThree = i % 3 == 0;
 				divisibleFive = i % 5 == 0;
 				if (divisibleThree && divisibleFive) {
