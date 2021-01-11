@@ -13,7 +13,6 @@ public class Program {
 		if (!csvFile.exists()) {
 			System.out.println("You must enter an existing pokedex file");
 			csvFile = null;
-		} else if (!csvFile.isFile()) {
 			System.out.println("You must enter a file, not a directory");
 			csvFile = null;
 		} else if (!csvFile.canRead()) {
