@@ -190,5 +190,31 @@ LIMIT 5;
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor 
 -- (#1 should be â€œGINA DEGENERESâ€? with 753 rentals and #10 should be â€œSEAN GUINESSâ€? with 599 rentals)
 
+SELECT a.last_name, a.first_name, COUNT(r.rental_id) AS "Number of Rentals"
+FROM actor AS a
+JOIN film_actor AS fa ON a.actor_id = fa.actor_id
+JOIN film AS f ON fa.film_id = f.film_id
+JOIN inventory AS i ON f.film_id = i.film_id
+JOIN rental AS r ON i.inventory_id = r.inventory_id
+GROUP BY a.actor_id
+ORDER BY "Number of Rentals" DESC
+LIMIT 11;
+
+
 -- 20. The top 5 â€œComedyâ€? actors ranked by number of rentals of films in the â€œComedyâ€? category starring that actor 
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
+
+SELECT a.last_name, a.first_name, COUNT(r.rental_id) AS "Number of Rentals"
+FROM actor AS a
+JOIN film_actor AS fa ON a.actor_id = fa.actor_id
+JOIN film AS f ON fa.film_id = f.film_id
+JOIN film_category AS fc ON f.film_id = fc.film_id
+JOIN category AS c ON fc.category_id = c.category_id
+JOIN inventory AS i ON f.film_id = i.film_id
+JOIN rental AS r ON i.inventory_id = r.inventory_id
+WHERE c.name = 'Comedy'
+GROUP BY a.last_name, a.first_name
+ORDER BY "Number of Rentals" DESC
+LIMIT 5;
+
+

@@ -2,16 +2,75 @@
 -- The following changes are applied to the "dvdstore" database.**
 
 -- 1. Add actors, Hampton Avenue, and Lisa Byway to the actor table.
+SELECT * FROM actor;
 
+START TRANSACTION;
+
+INSERT INTO actor (first_name, last_name) VALUES ('HAMPTON', 'AVENUE');
+INSERT INTO actor (first_name, last_name) VALUES ('LISA', 'BYWAY');
+
+SELECT * FROM actor;
+
+COMMIT;
+
+SELECT * FROM actor;
+--201 HAMPTON AVENUE
+--202 LISA BYWAY
 -- 2. Add "Euclidean PI", "The epic story of Euclid as a pizza delivery boy in
 -- ancient Greece", to the film table. The movie was released in 2008 in English.
 -- Since its an epic, the run length is 3hrs and 18mins. There are no special
 -- features, the film speaks for itself, and doesn't need any gimmicks.
+SELECT * FROM film
+ORDER BY film_id DESC
+LIMIT 5;
+START TRANSACTION;
+
+INSERT INTO film (title, description, release_year, language_id, length)
+VALUES ('EUCLIDEAN PI', 'The epic story of Euclid as a pizza delivery boy in ancient Greece', 2008, 1, 75);
+
+
+SELECT * FROM film
+ORDER BY film_id DESC
+LIMIT 5;
+
+COMMIT;
+
+SELECT * FROM film
+ORDER BY film_id DESC
+LIMIT 5;
+
 
 -- 3. Hampton Avenue plays Euclid, while Lisa Byway plays his slightly
 -- overprotective mother, in the film, "Euclidean PI". Add them to the film.
+SELECT * FROM actor WHERE first_name = 'LISA';
+SELECT * FROM film_actor
+ORDER BY film_id DESC;
 
+START TRANSACTION;
+
+INSERT INTO film_actor (actor_id, film_id) VALUES (205, 1003);
+INSERT INTO film_actor (actor_id, film_id) VALUES (206, 1003);
+
+SELECT * FROM film_actor
+ORDER BY film_id DESC;
+
+COMMIT;
+
+SELECT * FROM film_actor
+ORDER BY film_id DESC;
 -- 4. Add Mathmagical to the category table.
+
+SELECT * FROM category;
+
+START TRANSACTION;
+
+INSERT INTO category (name) VALUES ('Mathmagical');
+
+SELECT * FROM category;
+
+COMMIT;
+
+SELECT * FROM category;
 
 -- 5. Assign the Mathmagical category to the following films, "Euclidean PI",
 -- "EGG IGBY", "KARATE MOON", "RANDOM GO", and "YOUNG LANGUAGE"
@@ -19,6 +78,7 @@
 -- 6. Mathmagical films always have a "G" rating, adjust all Mathmagical films
 -- accordingly.
 -- (5 rows affected)
+
 
 -- 7. Add a copy of "Euclidean PI" to all the stores.
 
