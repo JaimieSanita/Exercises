@@ -75,9 +75,9 @@ INSERT INTO department(name) VALUES('Developers');
 INSERT INTO department(name) VALUES('HR');
 
 INSERT INTO employee_project(employee_id, project_id) VALUES (1, 1);
-INSERT INTO employee_project(employee_id, project_id) VALUES (2, 5);
+INSERT INTO employee_project(employee_id, project_id) VALUES (6, 4);
 INSERT INTO employee_project(employee_id, project_id) VALUES (3, 2);
-INSERT INTO employee_project(employee_id, project_id) VALUES (4, 7);
+INSERT INTO employee_project(employee_id, project_id) VALUES (7, 3);
 
 ALTER TABLE employee_project
 --  CONSTRAINT      NAME            CONSTRAINT-TYPE         COLUMNS         REF             TABLE   COLUMN
@@ -87,11 +87,18 @@ ADD CONSTRAINT  fk_project_id_id       FOREIGN KEY          (project_id)    REFE
 ALTER TABLE employee
 ADD CONSTRAINT  fk_department_id_id    FOREIGN KEY           (department)           REFERENCES      department(id);
 
+SELECT * FROM employee
+JOIN employee_project
+ON employee.id = employee_project.employee_id
+JOIN project
+ON employee_project.project_id = project.id
+JOIN department
+ON department.id = employee.department;
 
 
 
 
-ROLLBACK;
+COMMIT;
 
 
 
