@@ -14,7 +14,8 @@ public class JavaDateExample {
 	}
 
 	private static void doBirthdayCalculationsUsingLegacyDateClasses() {
-		Calendar birthdayCal = Calendar.getInstance(); // This instance now represents the instant (year, month, day, hour, etc) that it was instantiated
+		Calendar birthdayCal = Calendar.getInstance(); // This instance now represents the instant 
+													 //(year, month, day, hour, etc) that it was instantiated
 		birthdayCal.set(1995, Calendar.MAY, 23, 0, 0, 0);
 		
 		Date today = new Date(); // This instance now represents the instant (year, month, day, hour, etc) that it was instantiated

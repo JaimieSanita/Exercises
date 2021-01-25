@@ -1,5 +1,6 @@
 package com.techelevator.city;
 
+//POJO; DEFAULT EMPTY CONSTRUCTOR AND GETTERS AND SETTERS
 public class City {
 	private Long id;
 	private String name;

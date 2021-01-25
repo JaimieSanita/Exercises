@@ -6,3 +6,6 @@ CREATE TABLE users (
   password varchar(32) NOT NULL,      -- Password (hashed, not plain-text)
   salt varchar(256) NOT NULL		  -- Password Salt
 );
+
+
+SELECT * FROM users;

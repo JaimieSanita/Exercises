@@ -39,18 +39,20 @@ public class JdbcUserDao implements UserDao {
      */
     @Override
     public User saveUser(String userName, String password) {
-        byte[] salt = passwordHasher.generateRandomSalt();
-        String hashedPassword = passwordHasher.computeHash(password, salt);
-        String saltString = new String(Base64.encode(salt));
-        long newId = jdbcTemplate.queryForObject(
+        byte[] salt = passwordHasher.generateRandomSalt(); //generate random salt
+        String hashedPassword = passwordHasher.computeHash(password, salt); //hash passwordprovided plus salt created above
+        String saltString = new String(Base64.encode(salt)); //hexadecimal string to store in database to encode
+        long newId = jdbcTemplate.queryForObject( //insert into users table and put values and return user id; 
+        										//only getting single value back; queryForObject method, gives datatype to item, ex id becomes a long
+        										//could use rowset instead 
                 "INSERT INTO users(username, password, salt) VALUES (?, ?, ?) RETURNING id", Long.class, userName,
                 hashedPassword, saltString);
 
-        User newUser = new User();
-        newUser.setId(newId);
-        newUser.setUsername(userName);
+        User newUser = new User(); //get our new user object
+        newUser.setId(newId); //set userid to id returned
+        newUser.setUsername(userName); //set username provided
 
-        return newUser;
+        return newUser; //return new user
     }
 
     /**
@@ -62,18 +64,22 @@ public class JdbcUserDao implements UserDao {
      * @param password the password of the user we are checking
      * @return true if the user is found and their password matches
      */
+   
+    
+ 
+    
     @Override
     public boolean isUsernameAndPasswordValid(String userName, String password) {
-        String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = '" + userName.toUpperCase() + "'";
+        String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = ?"; //uppercase for case insensitivity
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser);
-        if (results.next()) {
-            String storedSalt = results.getString("salt");
-            String storedPassword = results.getString("password");
-            String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt));
-            return storedPassword.equals(hashedPassword);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser, userName.toUpperCase()); //find that user
+        if (results.next()) { //if found
+            String storedSalt = results.getString("salt");//get salt 
+            String storedPassword = results.getString("password"); //get password
+            String hashedPassword = passwordHasher.computeHash(password, Base64.decode(storedSalt)); //recompute hashed password
+            return storedPassword.equals(hashedPassword); //return whether passwords equal one anther
         } else {
-            return false;
+            return false; 
         }
     }
 
@@ -95,6 +101,26 @@ public class JdbcUserDao implements UserDao {
         }
 
         return users;
+    }
+    
+    public String getSortQuery(String selectedSort) { //pre-filtered list user gets to see & select
+    	if(selectedSort.equals("username desc")) {
+    		return "username DESC"; //returning constants I myself built
+    	} else if (selectedSort.equals("username asc")) {
+    		return "username ASC";
+    	}else {
+    		return "id ASC";
+    	}
+    }
+    public List<User> getAllUserSorted(String sortValue){
+    	
+    	//String sqlSelectAllUsers = "SELECT id, username FROM users ORDER BY ?";
+    	//CANNOT USE  ? with ORDER BY or other SQL syntax
+    	//when dynamically selecting, use whitelisting technique instead
+    	
+    	String sqlSelectAllUsers = "SELECT id, username FROM users ORDER BY " + getSortQuery(sortValue);
+    	
+    	return null;
     }
 
 }

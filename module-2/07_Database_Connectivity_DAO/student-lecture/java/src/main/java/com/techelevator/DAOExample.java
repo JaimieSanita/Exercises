@@ -17,6 +17,13 @@ public class DAOExample {
 		
 		CityDAO dao = new JDBCCityDAO(worldDataSource);
 		
+		
+		
+		
+		
+		
+		//Imagine this is in a different file
+				
 		City smallville = new City();
 		smallville.setCountryCode("USA");
 		smallville.setDistrict("KS");

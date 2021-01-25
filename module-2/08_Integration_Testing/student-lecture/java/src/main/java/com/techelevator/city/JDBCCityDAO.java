@@ -12,12 +12,17 @@ public class JDBCCityDAO implements CityDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
+	//CONSTRUCTOR(create JdbcTemplate object out of dataSource to use in other methods)
+	//where someone could load the database connection string & credentials from a secure file and then
+	//construct a data source which we pass into this object
 	public JDBCCityDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+	
 
-	@Override
-	public void save(City newCity) {
+	//METHOD IMPLEMENTATIONS
+	@Override //methods from interface
+	public void create(City newCity) {
 		String sqlInsertCity = "INSERT INTO city(id, name, countrycode, district, population) "
 				+ "VALUES(?, ?, ?, ?, ?)";
 		newCity.setId(getNextCityId());
@@ -25,12 +30,17 @@ public class JDBCCityDAO implements CityDAO {
 				newCity.getDistrict(), newCity.getPopulation());
 	}
 
+	
+	
+	
 	@Override
 	public City findCityById(long id) {
-		City theCity = null;
+		City theCity = null; //default to null b/c no id known yet; reference type variable
+		//don't forget space after Select & From clauses; otherwise "populationFrom"
+		//list out all columns rather than using *
 		String sqlFindCityById = "SELECT id, name, countrycode, district, population " + "FROM city " + "WHERE id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id);
-		if (results.next()) {
+		if (results.next()) { //only looking for one row, therefore use if conditional, not while loop
 			theCity = mapRowToCity(results);
 		}
 		return theCity;
@@ -73,16 +83,27 @@ public class JDBCCityDAO implements CityDAO {
 		jdbcTemplate.update("DELETE FROM city WHERE id = ?",id);
 	}
 
-	private long getNextCityId() {
+	private long getNextCityId() { //helper method; use when creating a new city
+		//call SQL function to get the next city_id from sequence (serial datatype)
+																//sql identifier
+																//could use RETURNING instead
 		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_city_id')");
 		if (nextIdResult.next()) {
+			//column index
+			//instead we could use an AS expresion avove in the query and access column name with a string
+			//"column name"
 			return nextIdResult.getLong(1);
-		} else {
+		} else { //rest of our steps are dependent of this happening therefore need to throw exception, something wrong with sql
 			throw new RuntimeException("Something went wrong while getting an id for the new city");
 		}
 	}
 
-	private City mapRowToCity(SqlRowSet results) {
+	
+	//helper function
+	//given sql row (in a sqlrowset object) representing a city 
+	//map that sql row into a real city object
+	//use the getType methods on the sqlrowset
+	private City mapRowToCity(SqlRowSet results) { //helper method
 		City theCity;
 		theCity = new City();
 		theCity.setId(results.getLong("id"));

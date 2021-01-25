@@ -1,5 +1,5 @@
 package com.techelevator.city;
-
+//lots of imports, BEAST
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 public class JDBCCityDAO implements CityDAO {
 
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate; //CAN SHARE TEMPLATE OBJECT
 	
-	public JDBCCityDAO(DataSource dataSource) {
+	public JDBCCityDAO(DataSource dataSource) { //CONSTRUCTOR
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
@@ -29,16 +29,16 @@ public class JDBCCityDAO implements CityDAO {
 	}
 	
 	@Override
-	public City findCityById(long id) {
-		City theCity = null;
+	public City findCityById(long id) { //ACCEPTS CITY ID
+		City theCity = null; //MAKE VARIABLE TO HOLD CITY
 		String sqlFindCityById = "SELECT id, name, countrycode, district, population "+
 							   "FROM city "+
-							   "WHERE id = ?";
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id);
-		if(results.next()) {
-			theCity = mapRowToCity(results);
+							   "WHERE id = ?"; //WRITE QUERY
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id); //RUNS QUERY AND SUB ID FOR ?
+		if(results.next()) { //IF HAVE 1 ROW, WHICH SHOULD ; IF NOT (false), RETURN NULL
+			theCity = mapRowToCity(results); //MAPS SQL ROW INTO A CITY 
 		}
-		return theCity;
+		return theCity;  //RETURN CITY OBJECT with SQL info matching id
 	}
 
 	@Override
@@ -57,8 +57,25 @@ public class JDBCCityDAO implements CityDAO {
 
 	@Override
 	public List<City> findCityByDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		List<City> citiesToReturn = new ArrayList<City>();
+		
+		//write a query that gets cities by provided district (String sql)
+		String query = "SELECT * FROM city WHERE  district = ?";
+		//execute query against database (SqlRowSet results)
+		SqlRowSet results = this.jdbcTemplate.queryForRowSet(query, district);
+		//while loop over result set (result.next)
+		while(results.next()) {
+		
+		//convert a row into a City
+			City resultCity = this.mapRowToCity(results);
+			
+			//add city in list
+			citiesToReturn.add(resultCity);
+		}
+		
+		
+		
+		return citiesToReturn;
 	}
 
 	@Override
@@ -81,9 +98,10 @@ public class JDBCCityDAO implements CityDAO {
 			throw new RuntimeException("Something went wrong while getting an id for the new city");
 		}
 	}
-
+	
+	//HELPER METHOD
 	private City mapRowToCity(SqlRowSet results) {
-		City theCity;
+		City theCity; //THIS ROW & 87 MAKE NEW CITY
 		theCity = new City();
 		theCity.setId(results.getLong("id"));
 		theCity.setName(results.getString("name"));
