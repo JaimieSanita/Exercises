@@ -13,8 +13,8 @@ public class App {
         int menuSelection = 999;
         int hotelId = -1;
 
-        ConsoleService consoleService = new ConsoleService();
-        HotelService hotelService = new HotelService(API_BASE_URL);
+        try(ConsoleService consoleService = new ConsoleService()){ //now consoleservice is autocloseable in try resource block
+        HotelService hotelService = new HotelService(API_BASE_URL, consoleService);
 
         while (menuSelection != 0) {
             menuSelection = consoleService.printMainMenu();
@@ -68,7 +68,7 @@ public class App {
                 }
             }
             else if (menuSelection == 0) { // Exit
-                consoleService.exit();
+                break;
             } else {
                 // anything else is not valid
                 System.out.println("Invalid Selection");
@@ -81,7 +81,8 @@ public class App {
             menuSelection = 999;
         }
         // if the loop exits, so does the program
-        consoleService.exit();
+        
+        }
     }
 
 }
