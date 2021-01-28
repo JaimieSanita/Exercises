@@ -4,13 +4,20 @@ import javax.validation.constraints.NotBlank;
 
 public class Location {
 
-    private int id;
-    private String name;
-    private String address;
-    private String city;
-    private String state;
-    private String zip;
 
+	    private int id;
+	    @NotBlank(message = "The field name is required.")
+	    private String name;
+	    @NotBlank(message = "The field address is required.")
+	    private String address;
+	    @NotBlank(message = "The field city is required.")
+	    private String city;
+	    @NotBlank(message = "The field state is required.")
+	    private String state;
+	    @NotBlank(message = "The field zip is required.")
+	    private String zip;
+
+	
     public Location() {
     }
 
