@@ -14,12 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+//we can add a path prefix her that applies to all of the routes below
+//if we wanted the raw get we could set path = " or omit path from RequestMapping
+//@RequestMapping("/api/v1")
 public class HotelController {
 
     private HotelDAO hotelDAO;
     private ReservationDAO reservationDAO;
 
-    public HotelController(HotelDAO hotelDAO, ReservationDAO reservationDAO) {
+    public HotelController(HotelDAO hotelDAO, ReservationDAO reservationDAO) { //accepting dao as arguments in constructor
+    																		//therefore controller is not dependent on DAO
+    																		//Spring is creating new controllers under the hood
         this.hotelDAO = hotelDAO;
         this.reservationDAO = reservationDAO;
     }
@@ -83,12 +88,36 @@ public class HotelController {
      * @param reservation
      * @param hotelID
      */
-    @ResponseStatus(HttpStatus.CREATED)
+    
+    //if succeed, return response status CREATED 201
+    @ResponseStatus(HttpStatus.CREATED) //changes response status setup when successfully exit method
+    				//URL-----------------------------	HTTP Request Method--------
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    //	 Returns Reservation object		called addReservation	requires validadated parameters: a Reservation instance------------- and int hotelID-----------------
+    public Reservation 					addReservation			(@Valid @RequestBody 			Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
-        return reservationDAO.create(reservation, hotelID);
+        //returns a JSON object in the shape of Reservation body that is deserialized
+    	return reservationDAO.create(reservation, hotelID);
     }
+    
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
+    public void deleteReservation(@PathVariable int id) throws ReservationNotFoundException {
+    	 this.reservationDAO.delete(id);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      * /hotels/filter?state=oh&city=cleveland
@@ -99,27 +128,11 @@ public class HotelController {
      */
     @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
     public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city) {
-
-        List<Hotel> filteredHotels = new ArrayList<>();
-        List<Hotel> hotels = list();
-
-        // return hotels that match state
-        for (Hotel hotel : hotels) {
-
-            // if city was passed we don't care about the state filter
-            if (city != null) {
-                if (hotel.getAddress().getCity().toLowerCase().equals(city.toLowerCase())) {
-                    filteredHotels.add(hotel);
-                }
-            } else {
-                if (hotel.getAddress().getState().toLowerCase().equals(state.toLowerCase())) {
-                    filteredHotels.add(hotel);
-                }
-
-            }
-        }
-
-        return filteredHotels;
+    	if(city != null) {
+    		return this.hotelDAO.getByCity(city, state);
+    	} else {
+    		return this.hotelDAO.getByState(state);
+    	}
     }
 
 }
