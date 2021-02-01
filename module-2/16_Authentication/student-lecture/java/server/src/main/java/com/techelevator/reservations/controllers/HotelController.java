@@ -17,6 +17,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()") //can be overridden by individual annotations on methods
 @RestController
 public class HotelController {
 
@@ -33,6 +34,7 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
+    @PreAuthorize("permitAll()") //overrides class authorization annotation
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
         return hotelDAO.list();
@@ -44,6 +46,7 @@ public class HotelController {
      * @param id the id of the hotel
      * @return all info for a given hotel
      */
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET)
     public Hotel get(@PathVariable int id) {
         return hotelDAO.get(id);
@@ -65,6 +68,7 @@ public class HotelController {
      * @param id
      * @return a single reservation
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "reservations/{id}", method = RequestMethod.GET)
     public Reservation getReservation(@PathVariable int id) throws ReservationNotFoundException {
         return reservationDAO.get(id);
@@ -76,6 +80,7 @@ public class HotelController {
      * @param hotelID
      * @return all reservations for a given hotel
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.GET)
     public List<Reservation> listReservationsByHotel(@PathVariable("id") int hotelID) throws HotelNotFoundException {
         return reservationDAO.findByHotel(hotelID);
@@ -114,10 +119,11 @@ public class HotelController {
      * @param id
      * @throws ReservationNotFoundException
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) throws ReservationNotFoundException {
-        auditLog("delete", id, "username");
+    public void delete(@PathVariable int id , Principal principal) throws ReservationNotFoundException {
+        auditLog("delete", id, principal.getName());
         reservationDAO.delete(id);
     }
 
@@ -162,7 +168,7 @@ public class HotelController {
      */
     private void auditLog(String operation, int reservation, String username) {
         System.out.println(
-                "User: " + username + "performed the operation: " + operation + "on reservation: " + reservation);
+                "User: " + username + " performed the operation: " + operation + " on reservation: " + reservation);
     }
 
 }

@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class HotelService {
 
-  public static String AUTH_TOKEN = "";
+  public static String AUTH_TOKEN = ""; //starts as empty and use authenticationService to get token and provide value
   private final String INVALID_RESERVATION_MSG = "Invalid Reservation. Please enter the Hotel Id, Full Name, Checkin Date, Checkout Date and Guests";
   private final String BASE_URL;
   private final RestTemplate restTemplate = new RestTemplate();
@@ -35,8 +35,17 @@ public class HotelService {
       throw new HotelServiceException(INVALID_RESERVATION_MSG);
     }
 
-    // TODO: Fix Me
-    throw new HotelServiceException("NOT IMPLEMENTED");
+    try {
+    	//TODO call post method with our reservation entity
+    	String requestURL = BASE_URL + "hotels/" + reservation.getHotelID() + "/reservations";
+    	HttpEntity<Reservation> entity = makeReservationEntity(reservation); //the makeRerservationEntity already sets up the authorizatoin headers
+    	return restTemplate.exchange(requestURL, HttpMethod.POST, entity, Reservation.class).getBody(); 
+    	//return restTemplate.postForObject(requestURL, entity, Reservation.class); 
+    		//don't have to use exchange for POST b/c already expecting entity																	
+    		//get wouldn't take entity type so can't use getforobject, must use exchange
+    }catch(RestClientResponseException ex) {
+    	throw new HotelServiceException("Unable to create your reservation, please try again later"); //if return in try doesn't return successfuly, this exception is thrown
+    }
   }
 
   /**
@@ -149,11 +158,17 @@ public class HotelService {
   public Reservation getReservation(int reservationId) throws HotelServiceException {
     Reservation reservation = null;
     try {
-      reservation = restTemplate
-          .exchange(BASE_URL + "reservations/" + reservationId, HttpMethod.GET, makeAuthEntity(), Reservation.class)
-          .getBody();
-    } catch (RestClientResponseException ex) {
-      throw new HotelServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
+    	
+      HttpEntity securityHeaders = makeAuthEntity(); //use this helper method b/c this is a getrequest method that doesn't have a body
+      
+      String requestURL = BASE_URL + "reservations/" + reservationId;
+      									//URL		//HTTPMethodRequestType	  //authorization	 //Return Type
+      reservation = restTemplate.exchange(requestURL, HttpMethod.GET, 			securityHeaders , Reservation.class).getBody(); //gets reservation object; any method you want can be specified in function call with .exchange(); takes everything as parameter
+      							
+    } catch (RestClientResponseException ex) { //exception returned by Spring
+    	//TODO log original exception to my logging system; therefore not seen by user
+      throw new HotelServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString()); //intercepting this exception; 
+      																								//specific to application; seen by user
     }
     return reservation;
   }
@@ -194,10 +209,10 @@ public class HotelService {
    * @param reservation
    * @return
    */
-  private HttpEntity<Reservation> makeReservationEntity(Reservation reservation) {
+  private HttpEntity<Reservation> makeReservationEntity(Reservation reservation) { //method for post/put requests with body
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.setBearerAuth(AUTH_TOKEN);
+    headers.setBearerAuth(AUTH_TOKEN); //this needs authentication and here's the token on request
     HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers);
     return entity;
   }
@@ -207,9 +222,9 @@ public class HotelService {
    * 
    * @return {HttpEntity}
    */
-  private HttpEntity makeAuthEntity() {
+  private HttpEntity makeAuthEntity() { //method for get/delete requests without body
     HttpHeaders headers = new HttpHeaders();
-    headers.setBearerAuth(AUTH_TOKEN);
+    headers.setBearerAuth(AUTH_TOKEN); //putting token on the request
     HttpEntity entity = new HttpEntity<>(headers);
     return entity;
   }

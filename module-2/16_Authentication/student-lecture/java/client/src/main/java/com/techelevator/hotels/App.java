@@ -52,9 +52,9 @@ public class App {
                     String credentials = consoleService.promptForLogin();
                     if( credentials.split(",").length == 2 ) {
                         ResponseEntity<Map> response = authenticationService.login(credentials);
-                        if (response.hasBody()) {
-                            String token = (String) response.getBody().get("token");
-                            hotelService.AUTH_TOKEN = token;
+                        if (response.hasBody()) { //if returned with body
+                            String token = (String) response.getBody().get("token"); //set token to token
+                            hotelService.AUTH_TOKEN = token; //hand over token to hotelService
                             System.out.println("Login Successful");
                         }
                     } else {

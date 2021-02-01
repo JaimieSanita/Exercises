@@ -25,9 +25,9 @@ public class AuthenticationService {
         HttpEntity<LoginDTO> entity = new HttpEntity<>(loginDTO, headers);
         ResponseEntity<Map> response = null;
         try {
-            response = restTemplate.exchange(BASE_URL + "/login", HttpMethod.POST, entity, Map.class);
+            response = restTemplate.exchange(BASE_URL + "/login", HttpMethod.POST, entity, Map.class); 
         } catch(RestClientResponseException ex) {
-            if (ex.getRawStatusCode() == 401 && ex.getResponseBodyAsString().length() == 0) {
+            if (ex.getRawStatusCode() == 401 && ex.getResponseBodyAsString().length() == 0) { //if get 401 error, throw this error message
                 String message = ex.getRawStatusCode() + " : {\"timestamp\":\"" + LocalDateTime.now() + "+00:00\",\"status\":401,\"error\":\"Invalid credentials\",\"message\":\"Login failed: Invalid username or password\",\"path\":\"/login\"}";
                 throw new AuthenticationServiceException(message);
             }
@@ -36,7 +36,7 @@ public class AuthenticationService {
                 throw new AuthenticationServiceException(message);
             }
         }
-        return response;
+        return response; //Map 
     }
 
 }
