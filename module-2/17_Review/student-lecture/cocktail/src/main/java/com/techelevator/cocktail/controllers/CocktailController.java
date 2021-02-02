@@ -3,12 +3,14 @@ package com.techelevator.cocktail.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.cocktail.models.Cocktail;
 import com.techelevator.cocktail.models.CocktailDAO;
+import com.techelevator.cocktail.models.CocktailNotFoundException;
 
 @RequestMapping("/cocktail")
 @RestController
@@ -28,9 +30,13 @@ public class CocktailController {
 	}
 	
 	//TODO Get specific
-	
-	
+	@RequestMapping(path="/{id}", method = RequestMethod.GET)
+	public Cocktail getById(@PathVariable int id) throws CocktailNotFoundException {
+		return this.dao.getById(id);
+	}
 	//TODO CREATE
+	
+	
 	
 	
 	

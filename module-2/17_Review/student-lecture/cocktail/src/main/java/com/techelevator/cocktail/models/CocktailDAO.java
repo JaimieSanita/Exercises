@@ -5,6 +5,6 @@ import java.util.List;
 public interface CocktailDAO {
 
 	List<Cocktail> getAll();
-	Cocktail getById(int id);
+	Cocktail getById(int id) throws CocktailNotFoundException;
 	
 }

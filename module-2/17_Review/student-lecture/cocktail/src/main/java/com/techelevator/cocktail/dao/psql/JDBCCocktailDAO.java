@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.techelevator.cocktail.models.Cocktail;
 import com.techelevator.cocktail.models.CocktailDAO;
+import com.techelevator.cocktail.models.CocktailNotFoundException;
 
 @Component
 public class JDBCCocktailDAO implements CocktailDAO {
@@ -42,9 +43,17 @@ public class JDBCCocktailDAO implements CocktailDAO {
 	}
 
 	@Override
-	public Cocktail getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cocktail getById(int id) throws CocktailNotFoundException {
+		String query = "SELECT id, name, alcoholic FROM cocktail WHERE id = ?";
+		SqlRowSet result = template.queryForRowSet(query, id);
+		if(result.next()) {
+			return mapRowToCocktail(result);
+		}else {
+		throw new CocktailNotFoundException(id);
+		}
 	}
 
+	private Cocktail mapRowToCocktail(SqlRowSet row) {
+		return new Cocktail(row.getInt("id"), row.getString("name"));
+	}
 }
