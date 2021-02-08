@@ -1,0 +1,27 @@
+
+img{
+    height: 200px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: pink;
+}
+
+h1{
+    font-size: 50px;
+    color:rebeccapurple;
+    text-align: center;
+    line-height:0px;
+}
+
+h2{
+
+    color:orchid;
+    text-decoration: underline;
+    line-height:5px;
+}
+
+div{
+    line-height:25px;
+    color:blueviolet 
+}
