@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--This is an HTML comment-->
+<!--COMMENTS IN HTML ARE STILL SENT TO THE CLIENT'S COMPUTER-->
+<html lang="en">
+
+<head>
+    <!--Content in the head section is not visible on the page but sets meta attributes, downloads stylesheets, etc-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--sets the size and scale-->
+    <title>Hello World Document</title>
+    <!--not a hyperlink but link to document, stylesheet-->
+    <!--href is the relative path of document specified by rel attribute-->
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!--sets tab title-->
+</head>
+<!--tells heading info for the ENTIRE document-->
+
+<body>
+    <!--Application Content lives in body-->
+    <header>
+        <!--does not change the visual representation on the page, but structure to page when changing styles/presents-->
+        <h1>Bits and Bytes</h1>
+        <p>Welcome to the internet's best restaurant</p>
+    </header>
+    <nav>
+        <a href="reservations.html">Make a Reservation</a>
+    </nav>
+
+    <main>
+        <h2>Menu</h2>
+
+        <section>
+            <h3>Lunch</h3>
+            <p>Full Stack Sandwich</p>
+            <!--Note that you can use a / at the end of a tag to make it self-closing-->
+            <img src="images/menu/lunch/full-stack-sandwich.png"/>
+            <p>Universal Serial Burger</p>
+            <img src="images/menu/lunch/USBurger.png"/>
+            <!--relative path^-->
+        </section>
+
+        <section>
+            <h3>Dinner</h3>
+            <p>Rack of Ram</p>
+            <img  src="images/menu/dinner/rack-of-ram.png"/>
+            <p>Vegetable Array</p>
+            <img src="images/menu/dinner/array-of-vegetables.png"/>
+
+        </section>
+    </main>
+</body>
+
+</html>
