@@ -1,0 +1,86 @@
+html{
+    height: 100%;
+    font-size: 16px;
+}
+
+*{
+    box-sizing: border-box; 
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+    /*This is a dark to light background gradient from top to bottom */
+    background-image: linear-gradient(to bottom, #858c90, #bbb);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*despite blocks, the below ensure horizontal spacing and no vertical
+    stacking if the monitor screen is small. will make scross horizontal*/
+    white-space: nowrap;
+}
+/* this will select any div element that has a class attribute called trello-list*/
+div.trello-list{
+    display: inline-block;
+      /* fixed width column*/
+    width: 300px;
+      /* look and feel*/
+      background-color: #ddd;
+     /* Round corners*/
+      border-radius: 2px 3px;
+      margin-right: 10px;
+      vertical-align: top;
+}
+/*if I wanted EVERY element inside of the div with class trello-list, 
+but NOT the div element because descendent because of space b/w t and *
+div.trello-list * {
+
+}
+*/
+ /* select h2 elements inside the trello-list class*/
+.trello-list h2{
+    margin: 8px;
+      /* relative to the size declared in html selector
+      because 1rem set to same, for bigger 1.5rem and smaller .5rem */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.trello-list ol{
+    margin: 0%;
+    padding: 0%;
+}
+
+.trello-list li{
+      /*will take dots off list items*/
+    list-style: none;
+    background-color: rgb(255,255,255);
+    /*make the font size a bit smaller*/
+    font-size: 0.9rem;
+    /*round each card edge*/
+    border-radius: 1px;
+    /*after each item give the m10pix of space before next*/
+    margin-bottom: 10px;
+    /*add a little white space b/w elements*/
+    padding: 8px;
+}
+
+.trello-list li:hover{
+    background-color: #e7e7e6;
+    color: #0b4209;
+}
+/*get the very last element in the list*/
+.trello-list li:last-child{
+    margin: 0%;
+}
+/*gets all links in list and overrides default in-line display to block*/
+.trello-list a {
+    display: block;
+    text-decoration: none;
+    color: #888;
+    /*      top; right; bottom;left*/
+    padding: 8px 0px 8px 5px;
+    font-size: 0.85rem;
+}
+
+.trello-list a:hover{
+    background-color: rgba(9, 45, 60, 0.1);
+}
