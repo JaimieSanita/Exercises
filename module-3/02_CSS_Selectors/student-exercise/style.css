@@ -86,11 +86,11 @@ h2 i{
   margin-right: 10px;
 }
 
-#what-we-do, #our-work{
+div:not(:last-child){
   border-right: 1px solid rgba(170, 239, 135, 0.8) ;
 }
 
-#our-work, #contact-us{
+div:not(:first-child){
   padding-left: 20px;
 }
 
