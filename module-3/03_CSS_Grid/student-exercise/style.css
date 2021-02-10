@@ -126,11 +126,12 @@ footer{
         grid-template-areas: 
         "headline headline "
         "quote picture"
-        ". contact"
+        "..... contact"
         "profile profile "
         "exp exp"
         "footer footer";
         align-items: start;
+        grid-row-gap: 5px;
     }
 
     #experience-grid{
