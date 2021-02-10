@@ -1,0 +1,53 @@
+.container {
+    /* note that display grid is a bit unusual 
+       display block/inline/inline block controls how this element flows
+       display grid controls how the children set within this element behave
+       same is true of flexbox, see tomorrow's lecture
+    */
+    display: grid;
+
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas:
+     "hd        hd          hd"
+     "menu     main   upcoming-events"
+     "ft        ft          ft";
+     height: 100vh;
+     grid-gap: 10px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+         "hd"
+         "menu"
+         "main"
+         "upcoming-events"
+         "ft";
+    }
+
+}
+
+.container>header {
+    grid-area: hd;
+}
+
+#menu-nav {
+    grid-area: menu;
+}
+
+.container>main {
+    grid-area: main;
+}
+
+.container>aside {
+    grid-area: upcoming-events;
+}
+
+.container>footer {
+    grid-area: ft;
+}
+
