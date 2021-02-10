@@ -64,6 +64,55 @@ header img {
     align-items: center;
 }
 
+@media only screen and (max-width: 1024px){
+    #main-grid{
+        grid-column-gap: 35px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "headline headline "
+        "quote picture"
+        "quote contact"
+        "profile profile "
+        "exp exp"
+        "footer footer";
+    }
+
+    #experience-grid{
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+        grid-template-areas: 
+        "code web"
+        "database design";
+    }
+}
+
+    @media only screen and (max-width: 450px){
+        #main-grid{
+            grid-column-gap: 35px;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "headline"
+            "picture"
+            "contact"
+            "quote"
+            "profile"
+            "exp"
+            "footer";
+            align-items: start;
+        }
+    
+        #experience-grid{
+            grid-column-gap: 20px;
+            grid-row-gap: 20px;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "code"
+            "web"
+            "database" 
+            "design";
+        }
+    }
+
 
 
 #headline{
@@ -119,56 +168,7 @@ footer{
     grid-area: design;
 }
 
-@media only screen and (max-width: 1024px){
-    #main-grid{
-        grid-column-gap: 35px;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 
-        "headline headline "
-        "quote picture"
-        "..... contact"
-        "profile profile "
-        "exp exp"
-        "footer footer";
-        align-items: start;
-        grid-row-gap: 5px;
-    }
-
-    #experience-grid{
-        grid-column-gap: 20px;
-        grid-row-gap: 20px;
-        grid-template-areas: 
-        "code web"
-        "database design";
-    }
-
-    @media only screen and (max-width: 450px){
-        #main-grid{
-            grid-column-gap: 35px;
-            grid-template-columns: 1fr;
-            grid-template-areas: 
-            "headline"
-            "picture"
-            "contact"
-            "quote"
-            "profile"
-            "exp"
-            "footer";
-            align-items: start;
-        }
-    
-        #experience-grid{
-            grid-column-gap: 20px;
-            grid-row-gap: 20px;
-            grid-template-columns: 1fr;
-            grid-template-areas: 
-            "code"
-            "web"
-            "database" 
-            "design";
-        }
-    }
-
     
 }
+
 
