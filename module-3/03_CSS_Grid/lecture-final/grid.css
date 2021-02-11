@@ -51,12 +51,25 @@
     grid-area: ft;
 }
 
+<<<<<<< HEAD
 main, 
 .food-item,
 .food-item section{
     display: flex;
 }
 
+=======
+main,
+.food-item,
+.food-item section {
+    display: flex;
+}
+
+.food-item {
+    flex-direction: row-reverse;
+}
+
+>>>>>>> main
 main,
 .food-item section {
     flex-direction: column;

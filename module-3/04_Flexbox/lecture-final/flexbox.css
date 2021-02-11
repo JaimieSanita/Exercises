@@ -1,0 +1,71 @@
+body,
+#hero footer,
+#featured section,
+#featured section article div,
+#all-items section,
+#all-items section article {
+    display: flex;
+}
+
+body, #all-items section {
+    /*by default flex direction is row */
+    flex-direction: column;
+}
+
+body {
+    align-items: center;
+}
+
+#featured section article div {
+    justify-content: center;
+}
+
+#all-items section article {
+    justify-content: center;
+}
+
+#hero footer,
+#all-items section article {
+    align-items: center;
+}
+
+#hero footer {
+    justify-content: space-between;
+}
+
+#all-items article div:last-child {
+    flex-basis: 80%
+}
+
+/* changing the layout order can be useful in specific cases
+   if I have many similar items and I want to allow, 
+   say sorting them 
+   */
+/*
+#all-items article:nth-child(even) div:first-child {
+    order: 2
+} */
+
+/* This is probably better if your intent is truly to reverse
+   the entire row */
+#all-items article:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+
+/* Media queries and responsive helpers*/
+
+@media screen and (max-width: 1024px) {
+    #featured section {
+        
+        flex-wrap: wrap;
+        
+        /* alternative */
+        /*
+        flex-direction:column;
+        */
+    }
+    #featured section article:nth-child(even) {
+        border: none;
+    }
+}
