@@ -51,3 +51,28 @@
     grid-area: ft;
 }
 
+main, 
+.food-item,
+.food-item section{
+    display: flex;
+}
+
+main,
+.food-item section {
+    flex-direction: column;
+}
+
+main{
+    align-items: center;
+}
+
+.food-item section{
+    width: 650px;
+    flex-basis: 80%;
+}
+/*sets images on other side of text
+.food-item{
+    flex-direction: row-reverse;
+}
+*/
+

@@ -116,7 +116,9 @@ div.food-item {
 }
 div.food-item img {
     max-width: 100%;
+    height: 200px;
 }
+
 div.food-item p {
     line-height: 2em;
 }
