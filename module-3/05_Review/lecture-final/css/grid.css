@@ -1,0 +1,63 @@
+
+#main-container {
+    display:grid;
+    grid-template-columns: 1fr 4fr 4fr 1fr;
+    grid-template-areas: 
+    ". hd    hd    ."
+    ". intro aside ."
+    ". exp   aside ."
+    ". ft    ft    .";
+    height: 100vh;
+}
+
+#head {
+    grid-area: hd;
+    background-color:saddlebrown;
+}
+
+#intro {
+    grid-area: intro;
+    background-color:skyblue;
+}
+
+#sidebar {
+    grid-area: aside;
+    background-color:teal;
+}
+
+
+#foot {
+    grid-area:ft;
+    background-color:sienna;
+}
+
+#expanded {
+    grid-area: exp;
+    background-color:steelblue;
+    display: grid;
+    grid-template-columns: 1fr 9fr 9fr 1fr;
+    grid-template-areas: 
+    ". e1 e2 ."
+    ". e3 e4 .";
+}
+
+#expanded p {
+    text-align: center;
+}
+
+#ex1 {
+    grid-area: e1;
+}
+
+#ex2 {
+    grid-area: e2;
+}
+
+#ex3 {
+    grid-area: e3;
+}
+
+#ex4 {
+    grid-area: e4;
+}
+
