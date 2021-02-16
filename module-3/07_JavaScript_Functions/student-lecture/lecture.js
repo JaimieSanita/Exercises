@@ -4,6 +4,7 @@
  * 
  * @returns {number} 1
  */
+//function keyword      name              arguments     curly braces
 function returnOne() {
   return 1;
 }
@@ -28,6 +29,9 @@ function printToConsole(value) {
  * @param {number} secondParameter the second parameter to multiply
  */
 
+function multiplyTogether(firstParameter, secondParameter) {
+  return firstParameter * secondParameter;
+}
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -38,9 +42,9 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
-
-
- 
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0) {
+  return firstParameter * secondParameter;
+}
 /**
  * Functions can return earlier before the end of the function. This could be useful
  * in circumstances where you may not need to perform additional instructions or have to
@@ -64,6 +68,19 @@ function returnBeforeEnd(firstParameter, secondParameter) {
   return firstParameter + secondParameter;
 }
 
+function dontReturnBeforeEnd(firstParameter, secondParameter) {
+  console.log("this will always fire.");
+  let result = 0;
+  if (firstParameter == 0) {
+    console.log("Returning secondParameter times two.");
+    result = secondParameter * 2;
+  } else {
+    console.log("Returning firstParameter + secondParameter.");
+    result = firstParameter + secondParameter;
+  }
+  return result;
+}
+
 /**
  * Scope is defined as where a variable is available to be used.
  *
@@ -85,11 +102,28 @@ function scopeTest() {
   if (inScopeInScopeTest && scopedToBlock) {
     console.log("This won't print!");
   }
-}
 
+
+}
+/**
+ * 
+ * Take the details of a person and create an english readable sentence 
+ * that uses the information to describe them .we join the quirks together
+ *  with the separator, or ", " by default.
+ * 
+ * @param {string} name name of person we're describing
+ * @param {number} age age of the person we're describing
+ * @param {string[]} [listOfQuirks] listOfQuirks the person's quirks, a list of strings
+ * @param {string} [separator = ", "] separator the string to separate the quirks by
+ * @returns {string} the full descriptive string
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
+}
+
+function addTwo(sum, number) {
+  return sum + number;
 }
 
 /**
@@ -100,7 +134,38 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  //call reduce with a named function
+  // return numbersToSum.reduce(addTwo); //passing reference to function addTwo & that's why no () 
+  //if () included, executing code of function
+  //by passing in w/o (), passing function & run at leisure
+  //use an anonymous function, no name
+  //              parameters        function body
+  const reducer = (sum, number) => { return sum + number;};
+
+  const shortReducer = (sum,number) => sum+number;
+
+  const longReducer = function(sum,number){
+    return sum+number;
+  }
+
+  return numbersToSum.reduce(reducer);
+
+  //alt syntax for one single operation:   (sum,number) => sum+number
+}
+
+function sumAllNumbersOldFashioned(numbersToSum) {
+  let sum = 0;
+  for (let i = 0; i < numbersToSum.length; i++) {
+    sum += numbersToSum[i];
+  }
+  return sum;
+}
+
+function reduceExplained(numbersToSum) {
+  let sum = 0;
+  for (let i = 0; i < numbersToSum.length; i++) {
+    sum = addTwo(sum, numbersToSum[i]);
+  }
 }
 
 /**
@@ -111,4 +176,102 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+function allDivisibleByThree(numbersToFilter) { 
+ const filterFunction = (num) => {return num % 3 === 0 } ;
+ //or:  
+ //const filter = (num) =>num % 3 === 0;
+  return numbersToFilter.filter(filterFunction);
+}
+
+function printAllElements(arr){
+  return arr.forEach((element) => {console.log(element);}); //looping through array and printing one at a time
+}
+
+/**
+ * 
+ * @param {number[]} numbersToMultiply array of numbers to be multiplied
+ * @param {number} multiple number to mulitply all the array values by
+ * @returns {number[]} returns a new array of numbers multiplied by the multiple number
+ */
+function multiplyAll(numbersToMultiply,multiple){
+  const mapper = (number) => {return number*multiple};
+  return numbersToMultiply.map(mapper);
+}
+
+/* FUNCTIONAL TRANSFORMATION
+FUNCTION    TAKES IN            RETURNS
+map:        array[something] => array[somethingElse] (same sized array; 1:1 mapping)
+reduce:     array[something] => 1 value of something/something else
+filter:     array[something] => array[something] (same sized array or smaller; never larger array)
+forEach:    array[something] => returns NOTHING; but performs action (print etc) on each element
+
+each function above takes in a function as it's first argument
+the function takes one, or two arguments depending on the behavior to the array function
+reduce takes 2 arguments
+map, filter, forEach take a single argument
+
+*/
+/**
+ * 
+ * returns the number of even numbers in the provided array
+ * 
+ * @param {number[]} numbers an array of numbers 
+ */
+function numberOfEvens(numbers){
+/*
+  ONE SHOT REDUCE
+  const reduceEvens = (sum, num){
+    if(num%2==0){
+      return sum+1;
+    } else {
+      return sum;
+    }
+  }
+
+  return numbers.reduce(reduceEvens);
+
+  */
+/*
+MAP TO REDUCE: TWO STEP
+  const mapToEven = (num) => {
+    if(num%2==0){
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  return numbers.map(mapToEven).reduce((sun,num) => sum+num);
+
+*/
+//FILTER TO MAP TO REDUCE: 3 STEP
+  return numbers.filter((num) => num%2==0)
+                .map((num) => {return 1;})
+                .reduce((sum, num) => {return sum+num;});
+}
+
+
+/**
+ *  Takes an array of numbers returns numbers as string representations in English
+ * 
+ * @param {number[]} numbers an array of numbers 0=10
+ * @returns {string[]} array of strings each representing the number in English
+ */
+function numberToWord(numbers){
+
+  const mapper = (num) => {
+    if(num === 1){
+      return "one";
+    } else if (num === 2){
+      return "two";
+    } else if (num === 3){
+      return "three";
+    } else {
+      return "some number";
+    }
+  };
+
+  return numbers.map(mapper);
+}
+
+
