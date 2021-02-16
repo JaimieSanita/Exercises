@@ -72,6 +72,8 @@ function makeNumber(first, second = '') {
  * Write a function called addAll that takes an unknown number of parameters
  * and adds all of them together. Return the sum.
  *
+ * Returns the largest number or latest letter in an array
+ * 
  * @param {...number} num a series of numbers to add together
  * @returns {number} the sum of all the parameters (or arguments)
  */
@@ -95,7 +97,7 @@ function addAll() {
  *  pre-fixed with the word 'Happy' followed by a space
  * 
  * @param {string[]} arr a series of string to add 'Happy ' to the beginning of
- * @results {string[]} an array of strings each starting with the word 'Happy '  
+ * @returns {string[]} an array of strings each starting with the word 'Happy '  
  */
 function makeHappy(arr) {
     return arr.map((strings) => { return 'Happy ' + strings; });
@@ -118,6 +120,15 @@ function makeHappy(arr) {
  *
  * Use `map` and an anonymous function.
  */
+/**
+ * This function takes an array of address objects and returns a mailing address in the form of 
+ * a string concatenated with  the original object's key/value pairs in the form of
+ * streetNumber streetName streetType city state zip 
+ * 
+ * @param {object[]} address an array of objects with the followign keys: streetNumber,
+ *                              streetName, streetType, city, state and zip
+ * @returns {string[]} returns an array of string in the form of :  streetName, streetType, city, state and zip
+ */
 function getFullAddressesOfProperties(address){
     let addresses = address.map( (orderedAddress) => {
         return `${orderedAddress.streetNumber} ${orderedAddress.streetName} ${orderedAddress.streetType} ${orderedAddress.city} ${orderedAddress.state} ${orderedAddress.zip}`;
@@ -133,7 +144,12 @@ function getFullAddressesOfProperties(address){
  */
 
 
-
+/**
+ * This function will take an array of number, strings or both and return the largest value
+ * 
+ * @param {function} arr function 
+ * @returns {number} the largest element in the array
+ */
 function findLargest(arr){
     let largest = arr[0];
     arr.forEach(element => {
@@ -157,6 +173,8 @@ function findLargest(arr){
  *   [2, 4, 6],
  *   [5, 10, 15]
  * ];
+ * 
+ * 
  *
  * The function returns 48. To do this, you will use two nested `reduce`
  * calls with two anonymous functions.
