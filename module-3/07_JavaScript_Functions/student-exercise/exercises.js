@@ -132,34 +132,13 @@ function getFullAddressesOfProperties(address){
  * It must work for strings and numbers.
  */
 
-function findLargest2(arr) {
 
-    let largest = 0;
-    arr.forEach(function (element) {
-        if (element > largest) {
-            largest = element;
-        } else {
-            let parsedElement = parseInt(element);
-            if (parsedElement > largest) {
-                largest = parsedElement;
-            }
-        }
-    });
-return largest;
-}
 
 function findLargest(arr){
-    let largest = 0;
-    arr.forEach(function (element) {
-        if(element === element){
-            if(element > largest){
-                largest = element;
-            }
-        } else {
-            let parsedElement = parseInt(element);
-            if(parsedElement > largest){
-                largest = parsedElement;
-            }
+    let largest = arr[0];
+    arr.forEach(element => {
+        if(largest < element){
+            largest = element;
         }
     });
     return largest;
