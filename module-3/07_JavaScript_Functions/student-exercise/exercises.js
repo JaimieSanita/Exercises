@@ -20,19 +20,19 @@
  * @returns {boolean} true if they are admitted
  */
 
- function isAdmitted(gpa, satScore = 0, recommendation = false){
-     let gpaAboveFour = gpa > 4.0;
-     let gpaAboveThree = gpa > 3.0;
-     let satAboveThirteenHundred = satScore > 1300;
-     let satAboveTwelveHundred = satScore > 1200;
-    if(gpaAboveFour || satAboveThirteenHundred || (gpaAboveThree&&recommendation==true) || (satAboveTwelveHundred&&recommendation==true)){
+function isAdmitted(gpa, satScore = 0, recommendation = false) {
+    let gpaAboveFour = gpa > 4.0;
+    let gpaAboveThree = gpa > 3.0;
+    let satAboveThirteenHundred = satScore > 1300;
+    let satAboveTwelveHundred = satScore > 1200;
+    if (gpaAboveFour || satAboveThirteenHundred || (gpaAboveThree && recommendation == true) || (satAboveTwelveHundred && recommendation == true)) {
         return true;
     } else {
         return false;
     }
 
 
- }
+}
 
 /**
  * Write a function called useParameterToFilterArray that takes an anonymous
@@ -43,8 +43,8 @@
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
-function useParameterToFilterArray(filterFunction){
-   
+function useParameterToFilterArray(filterFunction) {
+
     return unfilteredArray.filter(filterFunction);
 }
 
@@ -61,12 +61,12 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the resultant number
  */
 
- function makeNumber(first, second =''){
-     const concatenated = first + second;
+function makeNumber(first, second = '') {
+    const concatenated = first + second;
     let parsed = parseInt(concatenated);
     return parsed;
-    
- }
+
+}
 
 /**
  * Write a function called addAll that takes an unknown number of parameters
@@ -76,13 +76,13 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
- function addAll(){
-     let sum = 0;
-     for(let i = 0; i < arguments.length; i++){
-         sum+=arguments[i];
-     }
-     return sum;
- }
+function addAll() {
+    let sum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
 
 /*
  * Write and document a function called makeHappy that takes
@@ -97,9 +97,9 @@ function useParameterToFilterArray(filterFunction){
  * @param {string[]} arr a series of string to add 'Happy ' to the beginning of
  * @results {string[]} an array of strings each starting with the word 'Happy '  
  */
- function makeHappy(arr){
-    return arr.map((strings) => {return 'Happy '+strings;});
- }
+function makeHappy(arr) {
+    return arr.map((strings) => { return 'Happy ' + strings; });
+}
 
 /*
  * Write and document a function called getFullAddressesOfProperties
@@ -118,7 +118,12 @@ function useParameterToFilterArray(filterFunction){
  *
  * Use `map` and an anonymous function.
  */
-
+function getFullAddressesOfProperties(address){
+    let addresses = address.map( (orderedAddress) => {
+        return `${orderedAddress.streetNumber} ${orderedAddress.streetName} ${orderedAddress.streetType} ${orderedAddress.city} ${orderedAddress.state} ${orderedAddress.zip}`;
+      });
+      return addresses;
+   }
 
 /*
  * Write and document a function called findLargest.
@@ -126,6 +131,41 @@ function useParameterToFilterArray(filterFunction){
  * Using `forEach`, find the largest element in an array.
  * It must work for strings and numbers.
  */
+
+function findLargest2(arr) {
+
+    let largest = 0;
+    arr.forEach(function (element) {
+        if (element > largest) {
+            largest = element;
+        } else {
+            let parsedElement = parseInt(element);
+            if (parsedElement > largest) {
+                largest = parsedElement;
+            }
+        }
+    });
+return largest;
+}
+
+function findLargest(arr){
+    let largest = 0;
+    arr.forEach(function (element) {
+        if(element === element){
+            if(element > largest){
+                largest = element;
+            }
+        } else {
+            let parsedElement = parseInt(element);
+            if(parsedElement > largest){
+                largest = parsedElement;
+            }
+        }
+    });
+    return largest;
+}
+
+
 
 /*
  * CHALLENGE
