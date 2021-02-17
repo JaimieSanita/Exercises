@@ -175,9 +175,15 @@ function findLargest(arr){
  * ];
  * 
  * 
+ * 
+ * 
  *
  * The function returns 48. To do this, you will use two nested `reduce`
  * calls with two anonymous functions.
  *
  * Read the tests to verify you have the correct behavior.
  */
+
+ function getSumOfSubArrayValues(arr){
+
+ }
