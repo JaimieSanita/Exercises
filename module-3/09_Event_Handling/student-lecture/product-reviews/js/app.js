@@ -55,17 +55,21 @@ function displayReview(review) {
     const img = tmpl.querySelector('img').cloneNode();
     tmpl.querySelector('.rating').appendChild(img);
   }
+  if(review.hasDelete){
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('float-right');
+
+    const button = document.createElement('button');
+    button.classList.add('btn', 'btn-outline-success', 'btn-sm');
+    button.innerText = "Delete";
+
+    buttonContainer.appendChild(button);
+    tmpl.querySelector('.review').appendChild(buttonContainer);
+  }
   main.appendChild(tmpl);
 }
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
-
-// set the product reviews page title
-setPageTitle();
-// set the product reviews page description
-setPageDescription();
-// display all of the product reviews on our page
-displayReviews();
 
 /**
  * Take an event on the description and swap out the description for a text box.
@@ -73,11 +77,11 @@ displayReviews();
  * @param {Event} event the event object
  */
 function toggleDescriptionEdit(desc) {
-  const textBox = desc.nextElementSibling;
-  textBox.value = description;
-  textBox.classList.remove('d-none');
-  desc.classList.add('d-none');
-  textBox.focus();
+  const textBox = desc.nextElementSibling; //select input text box below descriptoin p tag
+  textBox.value = description; //set description value to textbox
+  textBox.classList.remove('d-none'); //remove d-none class from text box to make visible
+  desc.classList.add('d-none'); //add class d-none to discription p tag and make invisible
+  textBox.focus(); //put cursor in the textbox by giving it focus
 }
 
 /**
@@ -103,14 +107,14 @@ function showHideForm() {
   const form = document.querySelector('form');
   const btn = document.getElementById('btnToggleForm');
 
-  if (form.classList.contains('d-none')) {
-    form.classList.remove('d-none');
-    btn.innerText = 'Hide Form';
-    document.getElementById('name').focus();
+  if (form.classList.contains('d-none')) { //if form is hidden
+    form.classList.remove('d-none'); //display
+    btn.innerText = 'Hide Form'; //button says Hide Form
+    document.getElementById('name').focus(); 
   } else {
-    resetFormValues();
-    form.classList.add('d-none');
-    btn.innerText = 'Add Review';
+    resetFormValues(); //if displayed, reset
+    form.classList.add('d-none'); //hide form
+    btn.innerText = 'Add Review'; //button says Add Review
   }
 }
 
@@ -130,4 +134,94 @@ function resetFormValues() {
 /**
  * I will save the review that was added using the add review from
  */
-function saveReview() {}
+function saveReview() { 
+//get the data from each form control
+//select each form control
+const name = document.getElementById('name').value; //gets value
+const title = document.getElementById('title').value;
+const review = document.getElementById('review').value;
+const rating = document.getElementById('rating').value;
+
+//make a review object with key value pairs
+const newReview = {
+  reviewer: name,
+  title: title,
+  review: review,
+  rating: rating,
+  hasDelete: true
+};
+
+//add the review object to array of reviews
+reviews.push(newReview);
+
+//call the code that redraws the reviews
+displayReview(newReview);
+//hide/toggle the form
+showHideForm();
+}
+
+
+
+
+//BY CONVENTION, THE DOM LOADED FUNCTIONS APPEAR AT BOTTOM OF FILE
+//addEventListener takes two arguments
+//an event name, and a function to execute once the event fires
+//add all event listening event inside so only execute when DOM content
+//is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // set the product reviews page title
+  setPageTitle();
+  // set the product reviews page description
+  setPageDescription();
+  // display all of the product reviews on our page
+  displayReviews();
+
+  //add a click handeler to the description
+  const description = document.querySelector('.description');
+  //declaring event parameter
+  description.addEventListener('click', (event) => {
+    toggleDescriptionEdit(event.target);
+  });
+  //add keyboard event handlers to description
+  const inputDescription = document.getElementById('inputDesc');
+  inputDescription.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      exitDescriptionEdit(event.target, true);
+    } else if (event.key === 'Escape') {
+      exitDescriptionEdit(event.target, false);
+    }
+  });
+
+  //ALT
+  //inputDescription.onfocusout = (event) => {exitDescriptionEdit(event.target,false);};
+  inputDescription.addEventListener('focusout', (event) => {
+    exitDescriptionEdit(event.target, false);
+  });
+
+  const button = document.getElementById('btnToggleForm');
+  button.addEventListener('click', (event) => {
+    showHideForm();
+  });
+
+  const formButton = document.getElementById('btnSaveReview');
+  formButton.addEventListener('click', (event)=>{
+    event.preventDefault(); //stops bubble up of default for event
+    saveReview();
+  });
+
+
+
+});
+
+/*
+Altnernative to above
+function onContentLoaded(){
+  setPageTitle();
+  // set the product reviews page description
+  setPageDescription();
+  // display all of the product reviews on our page
+  displayReviews();
+}
+//example of using a named function as an event handler
+document.addEventListener('DOMContentLoaded', onContentLoaded);
+*/
