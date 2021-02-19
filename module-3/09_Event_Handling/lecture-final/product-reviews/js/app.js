@@ -2,6 +2,7 @@ const name = 'Cigar Parties for Dummies';
 let description = 'Host and plan the perfect cigar party for all of your squirrelly friends.';
 let reviews = [
   {
+    id: 1,
     reviewer: 'Malcolm Gladwell',
     title: 'What a book!',
     review:
@@ -50,6 +51,7 @@ function displayReview(review) {
   tmpl.querySelector('h4').innerHTML = review.reviewer;
   tmpl.querySelector('h3').innerHTML = review.title;
   tmpl.querySelector('p').innerHTML = review.review;
+  tmpl.querySelector('input[type="hidden"]').value = review.id;
   // there will always be 1 star because it is a part of the template
   for (let i = 1; i < review.rating; ++i) {
     const img = tmpl.querySelector('img').cloneNode();
@@ -57,12 +59,27 @@ function displayReview(review) {
   }
   if(review.hasDelete) {
     const btnContainer = document.createElement('div');
-    btnContainer.classList.add('float-right');
+    btnContainer.style = "display:flex; justify-content:flex-end;";
 
     const btn = document.createElement('button');
     btn.classList.add('btn', 'btn-outline-success', 'btn-sm');
     btn.innerText = "Delete";
-    btn.addEventListener('click', (event) => {console.log('delete button clicked!');});
+    btn.addEventListener('click', (event) => {
+      const btn = event.currentTarget; //button is current event target
+      const reviewDiv = btn.closest('.review'); //finds closest parent element (container) with class review
+      
+      //START: REMOVE FROM ARRAY
+      const hiddenInput = reviewDiv.querySelector('input[type="hidden"]');   //select hiddenInput
+      const objectId = hiddenInput.value; //get id value from hiddenInput
+      reviews = reviews.filter((reviewItem) => {  //remove the value from underlying array
+        return reviewItem.id != objectId; //filters out reviews with id matching & deleting current review only 
+      });
+      //END: REMOVE FROM ARRAY
+
+      //REMOVE FROM DOM
+      //delete the node; remove removes node from the dom
+      reviewDiv.remove();
+    });
 
     btnContainer.appendChild(btn);
     tmpl.querySelector('.review').appendChild(btnContainer);
@@ -152,7 +169,12 @@ function saveReview() {
 
   //make a review object
 
+                 //eliminates decimal      //generates 0-9   //makes integer    //ensures id can't be 0
+const randomId = Math.floor               (Math.random() *    3000000000)       +1; 
+
+
   const newReview = {
+    id: randomId,
     reviewer : name,
     title : title,
     review : review,
