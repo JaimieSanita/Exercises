@@ -15,7 +15,11 @@
       <tbody>
         <tr>
           <td>
-            <input type="checkbox" id="selectAll" />
+            <input 
+            type="checkbox" 
+            id="selectAll"
+            v-bind:checked="selectedUserIDs"
+            v-on:change="selectUser($event)" />
           </td>
           <td>
             <input
@@ -71,8 +75,8 @@
     </table>
     <div class="all-actions">
       <button v-bind:disabled="actionButtonDisabled" v-on:click.prevent="enableSelectedUsers">Enable Users</button>
-      <button>Disable Users</button>
-      <button>Delete Users</button>
+      <button v-on:click.prevent="disableSelectedUsers">Disable Users</button>
+      <button v-on:click.prevent="deleteSelectedUsers">Delete Users</button>
     </div>
     <button v-on:click.prevent="showForm = true" v-if="showForm === false">
       Add New User
@@ -185,7 +189,22 @@ export default {
         }
       });
     },
-
+    deleteSelectedUsers(){
+     this.users.forEach((usr) => {
+        if (this.selectedUserIDs.includes(usr.id)) {
+          this.users.shift(usr);
+        }
+      });
+      this.selectedUserIDs = [];
+    },
+    disableSelectedUsers(){
+     this.users.forEach((usr) => {
+        if (this.selectedUserIDs.includes(usr.id)) {
+          usr.status = "Disabled";
+        }
+      });
+      this.selectedUserIDs = [];
+    },
     enableSelectedUsers() {
       this.users.forEach((usr) => {
         if (this.selectedUserIDs.includes(usr.id)) {
