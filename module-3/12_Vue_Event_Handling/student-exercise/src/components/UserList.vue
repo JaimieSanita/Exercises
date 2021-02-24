@@ -18,8 +18,8 @@
             <input
               type="checkbox"
               id="selectAll"
-              v-on:change="selects()"
-              v-bind:checked="selectAll"
+              v-on:change="selects"
+              v-model="selectAll"
             />
           </td>
           <td>
@@ -245,11 +245,7 @@ export default {
           (id) => id != userId
         );
       }
-      if(this.selectAll && this.selectedUserIDs.length != this.users.length){
-        this.selectAll = false;
-      } else if (!this.selectAll && this.selectedUserIDs.length = this.users.length){
-         this.selectAll = true;
-      }
+
     },
     selects(){
       if(this.selectAll){
