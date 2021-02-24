@@ -32,7 +32,14 @@ export default new Vuex.Store({
       }
     ]
   },
-  mutations: {},
+  mutations: {
+    FLIP_READ(state, bookToChange) {
+      bookToChange.read = !bookToChange.read;
+    },
+    ADD_NEW(state, book){
+      state.books.push(book);
+    }
+  },
   actions: {},
   modules: {},
   strict: true
