@@ -81,7 +81,7 @@
     <button v-on:click.prevent="showForm = true" v-if="showForm === false">
       Add New User
     </button>
-    <form id="frmAddNewUser" v-show="showForm === true">
+    <form id="frmAddNewUser" v-show="showForm === true" v-on:submit.prevent="saveUser">
       <div class="field">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" v-model="newUser.firstName" />
@@ -179,7 +179,7 @@ export default {
   methods: {
     saveUser() {
       const newestUser = this.newUser;
-      this.users.push(newestUser);
+      this.users.unshift(newestUser);
       this.newUser = {};
     },
     flipStatus(userId) {
@@ -192,7 +192,7 @@ export default {
     deleteSelectedUsers(){
      this.users.forEach((usr) => {
         if (this.selectedUserIDs.includes(usr.id)) {
-          this.users.shift(usr);
+          this.users.pop(usr);
         }
       });
       this.selectedUserIDs = [];
