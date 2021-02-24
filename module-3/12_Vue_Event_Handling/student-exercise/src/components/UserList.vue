@@ -15,11 +15,11 @@
       <tbody>
         <tr>
           <td>
-            <input 
-            type="checkbox" 
-            id="selectAll"
-            v-bind:checked="selectedUserIDs"
-            v-on:change="selectUser($event)" />
+            <input
+              type="checkbox"
+              id="selectAll"
+              v-on:click.prevent="selects()"
+            />
           </td>
           <td>
             <input
@@ -74,14 +74,33 @@
       </tbody>
     </table>
     <div class="all-actions">
-      <button v-bind:disabled="actionButtonDisabled" v-on:click.prevent="enableSelectedUsers">Enable Users</button>
-      <button v-on:click.prevent="disableSelectedUsers">Disable Users</button>
-      <button v-on:click.prevent="deleteSelectedUsers">Delete Users</button>
+      <button
+        v-bind:disabled="actionButtonDisabled"
+        v-on:click.prevent="enableSelectedUsers"
+      >
+        Enable Users
+      </button>
+      <button
+        v-bind:disabled="actionButtonDisabled"
+        v-on:click.prevent="disableSelectedUsers"
+      >
+        Disable Users
+      </button>
+      <button
+        v-bind:disabled="actionButtonDisabled"
+        v-on:click.prevent="deleteSelectedUsers"
+      >
+        Delete Users
+      </button>
     </div>
     <button v-on:click.prevent="showForm = true" v-if="showForm === false">
       Add New User
     </button>
-    <form id="frmAddNewUser" v-show="showForm === true" v-on:submit.prevent="saveUser">
+    <form
+      id="frmAddNewUser"
+      v-show="showForm === true"
+      v-on:submit.prevent="saveUser"
+    >
       <div class="field">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" v-model="newUser.firstName" />
@@ -189,16 +208,17 @@ export default {
         }
       });
     },
-    deleteSelectedUsers(){
-     this.users.forEach((usr) => {
-        if (this.selectedUserIDs.includes(usr.id)) {
-          this.users.pop(usr);
-        }
+    deleteSelectedUsers() {
+      this.selectedUserIDs.filter((filteredUser) => {
+        for (let i = 0; i < this.users.length; i++) {
+          if (this.users[i].id == filteredUser) {
+            this.users.splice(i, 1);
+          }
+        }this.selectedUserIDs=[];
       });
-      this.selectedUserIDs = [];
     },
-    disableSelectedUsers(){
-     this.users.forEach((usr) => {
+    disableSelectedUsers() {
+      this.users.forEach((usr) => {
         if (this.selectedUserIDs.includes(usr.id)) {
           usr.status = "Disabled";
         }
@@ -217,7 +237,7 @@ export default {
       const userId = event.target.value;
       const checkbox = event.target;
       if (checkbox.checked) {
-        this.selectedUserIDs.push(parseInt(userId,10));
+        this.selectedUserIDs.push(parseInt(userId, 10));
       } else {
         this.selectedUserIDs = this.selectedUserIDs.filter(
           (id) => id != userId
