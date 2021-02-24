@@ -41,6 +41,7 @@ export default {
   name: "add-review",
   data() {
     return {
+      //not global data therefore lives on component as default value
       showForm: false,
       newReview: {
         favorited: false,
@@ -49,11 +50,12 @@ export default {
   },
   methods: {
     addNewReview() {
+      this.$store.commit('ADD_REVIEW', this.newReview);
       this.resetForm();
     },
     resetForm() {
       this.showForm = false;
-      this.newReview = {};
+      this.newReview = {favorited:false};
     },
   },
 };
