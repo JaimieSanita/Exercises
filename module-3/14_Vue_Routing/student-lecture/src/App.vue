@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+<!--this component tag decides which component to render given a route path-->
+<!--this tag makes content load on page-->
+  <router-view/>
 </template>
 
 <script>
