@@ -44,10 +44,10 @@ export default {
     };
   },
   created() {
-    boardsService.getCards(this.$route.params.id).then(response => {
-      this.title = response.data.title;
-      this.cards = response.data.cards;
-      this.isLoading = false;
+    boardsService.getCards(this.$route.params.id).then(response => { 
+      this.title = response.data.title; //when get cards, set title
+      this.cards = response.data.cards;//set cards
+      this.isLoading = false; //sets isLoading to false & above stop
     });
   },
   computed: {

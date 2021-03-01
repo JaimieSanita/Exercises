@@ -30,10 +30,10 @@ export default {
       isLoading: true
     };
   },
-  created() {
+  created() {//gets promise object//sets promise object to response
     boardsService.getBoards().then(response => {
-      this.boards = response.data;
-      this.isLoading = false;
+      this.boards = response.data; //sets array of boards equal to response of api call
+      this.isLoading = false; 
     });
   }
 };
