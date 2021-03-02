@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit.prevent="submitForm" class="cardForm">
+  <form v-on:submit.prevent="submitForm" class="cardForm"><!--stops default action of submitting form data within URL, bad if sensitive data-->
     <div class="status-message error" v-show="errorMsg !== ''">{{errorMsg}}</div>
     <div class="form-group">
       <label for="title">Title:</label>
@@ -54,7 +54,7 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    submitForm() { //constructs new card object from submitted data
       const newCard = {
         boardId: Number(this.$route.params.boardID),
         title: this.card.title,
@@ -65,32 +65,32 @@ export default {
         date: moment().format("MMM Do YYYY")
       };
 
-      if (this.cardID === 0) {
+      if (this.cardID === 0) { 
         // add
         boardsService
           .addCard(newCard)
           .then(response => {
-            if (response.status === 201) {
+            if (response.status === 201) { //201=created
               this.$router.push(`/board/${newCard.boardId}`);
             }
           })
-          .catch(error => {
+          .catch(error => { 
             this.handleErrorResponse(error, "adding");
           });
       } else {
-        // update
-        newCard.id = this.cardID;
+        // update; when the cardID is not 0 and thus not a new card
+        newCard.id = this.cardID; //refill with original info
         newCard.avatar = this.card.avatar;
         newCard.date = this.card.date;
         boardsService
           .updateCard(newCard)
           .then(response => {
-            if (response.status === 200) {
+            if (response.status === 200) { //if successfully updated
               this.$router.push(`/board/${newCard.boardId}`);
             }
           })
           .catch(error => {
-            this.handleErrorResponse(error, "updating");
+            this.handleErrorResponse(error, "updating"); 
           });
       }
     },

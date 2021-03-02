@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <boards-list />
-    <router-view :key="$route.fullPath" class="routerView" />
+    <router-view :key="$route.fullPath" class="routerView" /> <!--A functional component that renders the matched component for the given path. Components rendered in can also contain its own , which will render components for nested paths. -->
   </div>
 </template>
 

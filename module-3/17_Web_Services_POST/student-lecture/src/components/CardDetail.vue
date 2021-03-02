@@ -56,33 +56,33 @@ export default {
     },
     deleteCard() {
       if (
-        confirm(
+        confirm( //pops up a message with OK and CANCEL button
           "Are you sure you want to delete this card? This action cannot be undone."
         )
-      ) {
+      ) { //if OK, delete card
         boardsService
           .deleteCard(this.card.id)
           .then(response => {
             if (response.status === 200) {
-              alert("Card successfully deleted");
+              alert("Card successfully deleted"); //alert dialog with only OK button
               this.$router.push(`/board/${this.card.boardId}`);
             }
           })
-          .catch(error => {
+          .catch(error => { 
             if (error.response) {
               this.errorMsg =
                 "Error deleting card. Response received was '" +
                 error.response.statusText +
                 "'.";
-            } else if (error.request) {
+            } else if (error.request) { //if server doesn't provide a response, server can't be reached
               this.errorMsg =
                 "Error deleting card. Server could not be reached.";
-            } else {
+            } else { //catch all but not likely
               this.errorMsg =
                 "Error deleting card. Request could not be created.";
             }
           });
-      }
+      } //if select CANCEL, exit method without doing anything, stay on page
     },
   },
   created() {

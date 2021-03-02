@@ -66,8 +66,35 @@ export default {
           }
         });
     },
-    deleteBoard() {
+    deleteBoard(){
       
+    
+      
+      
+     
+    
+  
+      //prompt for confirmation
+      if(confirm("Are you sure you want to delete this board and all its associated cards? This action cannot be undone.")){
+        boardsService.deleteBoard(this.boardId).then((response)=>{
+          //if successful, do delete
+          if(response.status === 200){
+            alert("Board successfuly deleted.");
+            //update Vuex calling delete mutation
+            this.$store.commit('DELETE_BOARD', this.boardId);
+             //push to home page
+            this.$router.push("/");
+          }  //if unsuccessful,
+        }).catch((error)=>{     //handle errors
+          if(error.response){
+            this.errorMsg = `Error deleting board. Response received was "${error.response.statusText}".`;
+          } else if (error.request){
+            this.errorMsg = "Error deleting board. Server could not be reached.";
+          } else {
+            this.errorMsg = "Error deleting board. Request could not be created.";
+          }
+        });
+      }
     }
   },
   created() {

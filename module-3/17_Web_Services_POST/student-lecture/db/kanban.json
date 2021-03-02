@@ -14,6 +14,11 @@
       "id": 33749,
       "title": "My Kanban Board #3",
       "backgroundColor": "#35284f"
+    },
+    {
+      "title": "Capstone Group 1",
+      "backgroundColor": "#9508c1",
+      "id": 33750
     }
   ],
   "cards": [
@@ -466,6 +471,16 @@
       "date": "Mar 5th 2020",
       "status": "In Progress",
       "tag": "Q&A"
+    },
+    {
+      "boardId": 15092,
+      "title": "A card for class",
+      "description": "We are having class today",
+      "status": "In Progress",
+      "tag": "Q&A",
+      "avatar": "https://randomuser.me/api/portraits/lego/1.jpg",
+      "date": "Mar 2nd 2021",
+      "id": 99412
     }
   ],
   "comments": [
