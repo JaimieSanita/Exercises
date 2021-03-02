@@ -31,7 +31,12 @@ export default {
     };
   },
   methods: {
-    saveMessage() {
+    saveMessage(){
+    messageService.create(this.message).then((response)=>{
+      if(response.status === 201){
+        this.$router.push(`/${this.message.topicId}`);
+      }
+    });
 
     }
   }
